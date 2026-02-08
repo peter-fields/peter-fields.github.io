@@ -24,6 +24,7 @@ github_username: peter-fields
 search: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: "sunset"
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
