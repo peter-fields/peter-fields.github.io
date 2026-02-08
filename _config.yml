@@ -62,7 +62,7 @@ plugins:
 author:
   name   : "Peter Fields"
   # avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  bio    : "Physicist interested in machine learning, statistical physics, and any topic where good questions are to be found."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
