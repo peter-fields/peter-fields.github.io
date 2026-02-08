@@ -17,23 +17,20 @@ title: Peter Fields
 description: Notes on machine learning, statistical physics, and other technical matters.
 url: "https://peter-fields.github.io"
 
-github_username: peter-fields
-
 # Build settings
-# minimal_mistakes_skin: sunset
 search: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: "sunset"
+minimal_mistakes_skin: sunset
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+github_username: peter-fields
 
 include:
   - _pages
-  - _posts
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -57,7 +54,6 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
-  - jekyll-paginate
   - jekyll-seo-tag
 
 author:
@@ -74,9 +70,6 @@ author:
 
 footer:
   links:
-    # - label: "Twitter"
-    #   icon: "fab fa-fw fa-twitter-square"
-    #   url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/peter-fields"
@@ -94,7 +87,7 @@ defaults:
       author_profile: true
       read_time: true
       # comments: true
-      share: true
+      share: false
       related: true
   # _pages
   - scope:
