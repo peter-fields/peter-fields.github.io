@@ -7,6 +7,20 @@ toc_sticky: true
 mathjax: true
 ---
 
+
+
+The limit \( \beta \to \infty \) produces hard routing.
+
+\[
+\pi_i^\star
+= \arg\max_{\pi}
+\left[
+\sum_i \pi_i z_i
+- \frac{1}{\beta}\mathrm{KL}(\pi\|u)
+\right].
+\]
+
+
 <div class="mathjax">
 
 \[
