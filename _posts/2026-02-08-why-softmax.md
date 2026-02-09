@@ -7,6 +7,8 @@ toc_sticky: true
 mathjax: true
 ---
 
+## why no work
+
 Inline: \( a^2 + b^2 = c^2 \)
 
 \[
