@@ -66,6 +66,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/peter-fields"
+    - label: "Google Scholar"
+      icon: "ai ai-google-scholar"   # uses Academicons (bundled with Minimal Mistakes)
+      url: "https://scholar.google.com/citations?user=vWoUWkkAAAAJ"
     # - label: "Instagram"
     #   icon: "fab fa-fw fa-instagram"
     #   url: "https://instagram.com/"
