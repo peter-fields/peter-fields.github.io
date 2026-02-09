@@ -7,6 +7,11 @@ toc_sticky: true
 mathjax: true
 ---
 
+Inline: \( a^2 + b^2 = c^2 \)
+
+\[
+\pi_i \propto e^{\beta z_i}
+\]
 
 
 The limit \( \beta \to \infty \) produces hard routing.
