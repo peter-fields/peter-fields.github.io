@@ -15,14 +15,6 @@ mathjax: true
 
 </div>
 
-Inline test: \( a^2 + b^2 = c^2 \).
-
-Display test:
-
-\[
-\pi_i = \frac{e^{\beta z_i}}{\sum_j e^{\beta z_j}}.
-\]
-
 ## Motivation
 
 Attention weights are usually written as
