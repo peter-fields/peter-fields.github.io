@@ -4,3 +4,8 @@ html { font-size: 16px !important; }
 @media (min-width: 48em) { html { font-size: 16px !important; } }
 @media (min-width: 64em) { html { font-size: 16px !important; } }
 @media (min-width: 80em) { html { font-size: 16px !important; } }
+
+/* TOC (right sidebar) font sizing */
+.toc .nav__title { font-size: 0.95rem !important; }
+.toc__menu { font-size: 0.9rem !important; }
+.toc__menu a { line-height: 1.35 !important; }
