@@ -7,6 +7,14 @@ toc_sticky: true
 mathjax: true
 ---
 
+<div class="mathjax">
+
+\[
+\pi_i = \frac{e^{\beta z_i}}{\sum_j e^{\beta z_j}}
+\]
+
+</div>
+
 Inline test: \( a^2 + b^2 = c^2 \).
 
 Display test:
