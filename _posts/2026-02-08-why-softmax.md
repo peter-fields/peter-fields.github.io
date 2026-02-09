@@ -89,17 +89,15 @@ I emphasize that this is just the way I like to think about it... not *the* way 
 
 For simplicity of notation let us drop $t$ and define the query-key score for a given key as 
 
-$$
-\begin{equation}
+\begin{equation} \label{eq:z}
 z_i=k_i\cdot q.
 \end{equation}
-$$ (eq)
 
 We let $n$ denote the numbers of scores. 
 
 Leaving $z_i$ alone for the moment, let us imagine that we had no good reason to prefer one index over another when calculating $   \mathcal{O}_t$ from Eq. \@ref{O_t}
 
-See Eq.[](#eq)
+See Eq. \eqref{eq:z}
 
 The limit \( \beta \to \infty \) produces hard routing.
 
