@@ -21,7 +21,7 @@ url: "https://peter-fields.github.io"
 search: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: sunrise
+minimal_mistakes_skin: "sunrise"
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
