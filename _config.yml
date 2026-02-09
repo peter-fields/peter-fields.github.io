@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Peter Fields
+# title: Peter Fields
 description: Notes on machine learning, statistical physics, and other technical matters.
 url: "https://peter-fields.github.io"
 
@@ -21,7 +21,7 @@ url: "https://peter-fields.github.io"
 search: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: "sunrise"
+minimal_mistakes_skin: "neon"
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
