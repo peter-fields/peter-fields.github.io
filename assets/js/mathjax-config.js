@@ -1,5 +1,8 @@
 window.MathJax = {
   tex: {
-    tags: 'ams'
+    tags: 'all',  // number ALL display math, including $$...$$
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
   }
 };
