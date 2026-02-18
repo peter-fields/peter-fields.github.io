@@ -20,7 +20,7 @@ sidebar:
       - \\(k_i\\) = key vector
       - \\(v_i\\) = value vector
       - \\(d_k\\) = key/query dimension
-      - \\(z_i = k_i \cdot q\\) = query-key score
+      - \\(z_i = k_i \cdot q_t\\) = query-key score
       - \\(\mathcal{O}_t\\) = attention output
       - \\(W_K, W_Q, W_V\\) = learned matrices
       
@@ -43,6 +43,8 @@ sidebar:
 tags: [attention, softmax, hypothesis testing, KL divergence, machine learning, deep learning]
 ---
 
+Softmax is ubiquitous in transformers, yet its role in attention can feel more heuristic than inevitable (at least to me). In this post, I try to make it feel more natural and show how this interpretation suggests useful diagnostics for the often circuit-like behavior of attention heads.
+
 ## Introduction: the attention mechanism
 
 Consider a stream of tokens (e.g. words from an LLM) to be embedded:
@@ -57,7 +59,7 @@ $$
 h_i \in \mathbb R^{d_{\text{model}}}.
 $$
 
-The attention mechanism updates this *residual stream* (as it is also called) by calculating three different quantities from learned parameters \\(W_K, W_Q\\) and \\( W_V \\). 
+The attention mechanism updates this *residual stream* by computing three quantities from learned parameters \\(W_K, W_Q\\) and \\( W_V \\). 
 
 Given the most recent embedded token in the stream, \\(h_t\\), and all tokens before it \\( \\{ h_i :i < t \\} \\), these three quantities are the keys, query, and values---and are defined as
 
@@ -73,7 +75,7 @@ $$
 v_i=W_Vh_i
 $$
 
-where \\(q,k \\in \\mathbb{R}^{d_k}\\) and \\( d_k<d_{\text{model}} \\). 
+where \\(q,k \\in \\mathbb{R}^{d_k}\\) and typically \\( d_k<d_{\text{model}} \\). 
 
 The update to the residual stream at position \\( t \\) is calculated as[^2]
 
@@ -104,13 +106,13 @@ This lends itself to the following interpretation: for any given token at positi
 
 The query-key pairs define the distribution \\( \pi_i \\) over which the values, \\( v_i \\), are averaged. We can see that this distribution determines what values the attention head should "focus" on. 
 
-This blog post is mainly concerned with a few thoughts I've been having around this question: **why the softmax distribution and not something else?**
+This post explores the question: **why softmax and not something else?**
 
 I emphasize that this is just the way I like to think about it... not *the* way it should be understood.
 
 ## Softmax as hypothesis testing
 
-For simplicity of notation let us drop $t$ and define the query-key score for a given key as 
+For notational simplicity we fix a destination position and drop the index $t$. We define the query-key score for a given key as
 
 $$ \label{eq:z}
 z_i=k_i\cdot q.
@@ -138,7 +140,7 @@ $$
 \sum_i \pi_i z_i - \frac{1}{\beta} \mathrm{KL}(\pi \| u),
 $$
 
-where \\( \frac{1}{\beta} \\) controls the trade-off between maximizing expected score and staying close to uniform. Each value of \\( \beta \\) corresponds to a particular budget \\( \rho \\): large \\( \beta \\) (loose budget) allows sharper distributions, while small \\( \beta \\) (tight budget) keeps \\( \pi \\) near uniform. It is easy to show that the solution is
+where \\( \frac{1}{\beta} \\) controls the trade-off between maximizing expected score and staying close to uniform. Each value of \\( \beta \\) corresponds to a particular budget \\( \rho \\): large \\( \beta \\) (loose budget) allows sharper distributions, while small \\( \beta \\) (tight budget) keeps \\( \pi \\) near uniform. Introducing a Lagrange multiplier for normalization and taking first-order conditions, one finds that the solution is
 
 $$
 \pi_i^\star \propto e^{\beta z_i},
@@ -150,7 +152,7 @@ which recovers softmax, defining the attention weights used in transformers.
 
 I should reiterate that this is merely my *interpretation* of the softmax function. In modern commercial transformer architectures the above optimization problems are not explicitly written into the training objective and play no role at inference time.
 
-That being said, the very fact that the softmax function is used in each attention head lends credence to the preceding interpretation. Each trained head in real, deployed transformers *can* be seen as instantiating some solution to a commitment-to-evidence-versus-ignorance optimization problem.
+That being said, the very fact that the softmax function is used in each attention head lends credence to the preceding interpretation. Each trained head in real, deployed transformers could be interpreted as instantiating some solution to a commitment-to-evidence-versus-ignorance optimization problem. Of course, the training objective does not explicitly enforce this constrained problem; the point is that the resulting functional form admits this interpretation.
 
 The parameters \\(\beta\\) and \\(\rho\\) are not to be found in any such real-world transformer in the likes of Claude or ChatGPT, but each does indeed have their own weight matrices \\(\hat W_K, \hat W_Q\\) and \\( \hat W_V \\). So, for a given residual stream \\( \\{h_i\\} \\) for some context \\(\\{x_i\\}\\), there is nothing stopping us from interrogating an attention head by examining the quantity 
 
@@ -169,7 +171,7 @@ $$
 
 \\(\hat \rho_{\text{eff},t}\\) will be large when the evidence to focus on certain past tokens while building \\(\hat \pi_t\\) is large. It will be small when the evidence is "flimsy." This is not necessarily bad, however; one can imagine certain heads operate well by considering evidence from many tokens, instead of only a few (to be very hand-wavy, think of a head that considers general themes and the tone of a context, instead of particular grammatical rules or other minutiae).
 
-This quantity, \\(\hat \rho_{\text{eff},t}\\), is therefore some measure of how well information is routed through a given head. 
+This quantity, \\(\hat \rho_{\text{eff},t}\\), is therefore a proxy for how selectively information is routed through a given head. 
 
 Equation \eqref{eq:rho_eff} can also be written as 
 
@@ -177,7 +179,7 @@ $$
 \hat \rho_{\text{eff},t} = \log n - H(\hat \pi_t)
 $$
 
-where we see that \\(\hat \rho_{\text{eff},t}\\) is dependent upon the length of the context window. Since \\(\hat \rho_{\text{eff},t} = \log n - H(\hat \pi_t)\\), if it grows logarithmically with \\(n\\) then \\(H(\hat \pi_t)\\) must remain bounded---meaning the head continues to focus on a fixed number of tokens regardless of how long the context becomes. Such a head can be seen as being robust. 
+where we see that \\(\hat \rho_{\text{eff},t}\\) is dependent upon the length of the context window. Since \\(\hat \rho_{\text{eff},t} = \log n - H(\hat \pi_t)\\), if it grows logarithmically with \\(n\\) then \\(H(\hat \pi_t)\\) must remain \\(O(1)\\)---meaning the head continues to focus on a fixed number of tokens regardless of how long the context becomes. Such a head can be seen as being robust. 
 
 ## Further implications: circuits & interpretability
 
@@ -190,7 +192,7 @@ $$
 \label{eq:d_beta}
 $$
 
-(where we have dropped \\(t \\) for simplicity of notation), we can see that it corresponds to a susceptibility to perturbations in temperature, similar to stat mech[^4]. Seeing the behavior of \\(\partial \hat \rho \\) in different contexts can allow one to further characterize a particular head.
+(where we have dropped \\(t \\) for simplicity of notation). Using standard exponential-family identities, we can see that this corresponds to a susceptibility to perturbations in temperature, similar to stat mech[^4]. Seeing the behavior of \\(\partial \hat \rho \\) in different contexts can allow one to further characterize a particular head.
 
 This is particularly true when considering work in interpretability and circuits in transformer architectures[^5][^6]. Both Eqs. \eqref{eq:rho_eff} and \eqref{eq:d_beta} would be interesting to track over many different contexts. 
 
