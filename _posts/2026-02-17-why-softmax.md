@@ -41,6 +41,7 @@ sidebar:
       - \\(\text{KL}(\pi \| u)\\) = KL divergence
       - \\(H(\pi)\\) = Shannon entropy
 tags: [attention, softmax, hypothesis testing, KL divergence, machine learning, deep learning]
+excerpt: "Softmax is ubiquitous in transformers, yet its role in attention can feel more heuristic than inevitable. In this post, I try to make it feel more natural and show how this interpretation suggests useful diagnostics for the often circuit-like behavior of attention heads."
 ---
 
 Softmax is ubiquitous in transformers, yet its role in attention can feel more heuristic than inevitable (at least to me). In this post, I try to make it feel more natural and show how this interpretation suggests useful diagnostics for the often circuit-like behavior of attention heads.
