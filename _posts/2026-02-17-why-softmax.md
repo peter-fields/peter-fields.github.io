@@ -45,6 +45,8 @@ tags: [attention, softmax, hypothesis testing, KL divergence, machine learning, 
 
 Softmax is ubiquitous in transformers, yet its role in attention can feel more heuristic than inevitable (at least to me). In this post, I try to make it feel more natural and show how this interpretation suggests useful diagnostics for the often circuit-like behavior of attention heads.
 
+<!--more-->
+
 ## Introduction: the attention mechanism
 
 Consider a stream of tokens (e.g. words from an LLM) to be embedded:
