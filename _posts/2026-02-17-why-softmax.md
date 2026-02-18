@@ -59,7 +59,7 @@ $$
 h_i \in \mathbb R^{d_{\text{model}}}.
 $$
 
-The attention mechanism updates this *residual stream* by computing three quantities from learned parameters \\(W_K, W_Q\\) and \\( W_V \\). 
+The attention mechanism updates this *residual stream* (as it is also called) by computing three quantities from learned parameters \\(W_K, W_Q\\) and \\( W_V \\). 
 
 Given the most recent embedded token in the stream, \\(h_t\\), and all tokens before it \\( \\{ h_i :i < t \\} \\), these three quantities are the keys, query, and values---and are defined as
 
