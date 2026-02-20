@@ -70,6 +70,9 @@ author:
     - label: "Google Scholar"
       icon: "fas fa-fw fa-graduation-cap"   # uses Academicons (bundled with Minimal Mistakes)
       url: "https://scholar.google.com/citations?user=vWoUWkkAAAAJ"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/peter-fields-8a9473106/"
     # - label: "Instagram"
     #   icon: "fab fa-fw fa-instagram"
     #   url: "https://instagram.com/"

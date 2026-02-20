@@ -201,7 +201,7 @@ This is particularly true when considering work in interpretability and circuits
 
 Think of a circuit that is activated in particular contexts, such as identifying which noun in a sentence is the indirect object. One can imagine each context string for that head mapping to a certain point in the \\( (\hat \rho, \partial \hat \rho) \\) plane. When the circuit is activated, the contexts would cluster towards high \\( \hat \rho \\) and low \\( \partial \hat \rho \\) (certain and stable). When not activated it would show low \\( \hat \rho \\) and low \\( \partial \hat \rho \\) (no preference for any past tokens and stable).
 
-The next post shall explore the behaviors of these quantities in monosemantic and polysemantic contexts. It should be interesting to see the polysemantic behavior in particular: one may expect an increase in \\( \partial \hat \rho \\) while \\( \hat \rho \\) stays high (attending to certain tokens but being less stable), giving a different signature than monosemanticity. 
+The next post shall explore the behaviors of these quantities in the indirect object identification (IOI) circuit in GPT-2. 
 
 ## References and Footnotes
 [^1]: Cover, T. M., & Thomas, J. A. (2006). *Elements of Information Theory* (2nd ed.), Section 11.8 (Chernoff-Stein Lemma). Wiley-Interscience.
