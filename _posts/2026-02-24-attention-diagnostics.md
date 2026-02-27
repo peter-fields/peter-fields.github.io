@@ -21,7 +21,7 @@ sidebar:
       \\(\Delta\text{KL}\\) — shift between conditions<br>
       \\(\Delta\chi\\) — shift between conditions<br>
 tags: [mechanistic-interpretability, attention, transformers, IOI-circuit, diagnostics]
-excerpt: "Post 1 introduced KL selectivity and susceptibility χ as per-head diagnostics derivable from attention weights alone. Here I test them on GPT-2-small's IOI circuit: can two scalar statistics, computed from a single forward pass, distinguish the 23 known circuit heads from the other 121?"
+excerpt: "The previous post introduced KL selectivity and susceptibility χ as per-head diagnostics derivable from attention weights alone. Here I test them on GPT-2-small's IOI circuit: can two scalar statistics, computed from a single forward pass, distinguish the 23 known circuit heads from the other 121? It seems so!"
 ---
 
 <!--
@@ -102,15 +102,46 @@ Cut from notebook: ⟨z⟩ excess, criticality framing, stat mech analogy.
 v1→v2→v3 prompt iteration: brief collapsible section, not main narrative.
 -->
 
-[Post 1]({% post_url 2026-02-08-why-softmax %}) derived two per-head diagnostics from the structure of the softmax operator: **KL selectivity** \\(\hat\rho\_{\text{eff}} = \text{KL}(\hat\pi \| u)\\) measures how sharply a head focuses its attention, and **susceptibility** \\(\chi = \text{Var}\_{\hat\pi}(\log\hat\pi)/(\log n)^2\\) measures how sensitive that sharpness is to small changes in the query-key scores. Both are computed from a single forward pass — no gradients, no activation patching.
+[Post 1]({% post_url 2026-02-17-why-softmax %}) derived two per-head diagnostics from the structure of the softmax operator: **KL selectivity** \\(\hat\rho\_{\text{eff}} = \text{KL}(\hat\pi \\| u)\\) measures how sharply a head focuses its attention, and **susceptibility** \\(\chi = \text{Var}\_{\hat\pi}(\log\hat\pi)/(\log n)^2\\) measures how sensitive that sharpness is to small changes in the query-key scores. Both are computed from a single forward pass — no gradients, no activation patching.
 
-Here I test a concrete prediction: *circuit heads should show larger shifts in these diagnostics between activating and non-activating prompts than non-circuit heads.* The testbed is GPT-2-small's Indirect Object Identification (IOI) circuit [^wang2022], whose 23 heads and functional roles are well characterized.
+Here I test a concrete prediction: *circuit heads should show larger shifts in these diagnostics between activating and non-activating prompts than non-circuit heads.* The testbed is GPT-2-small's Indirect Object Identification (IOI) circuit,[^wang2022] whose 23 heads and functional roles are well characterized.
 
 ---
 
 ## Setup
 
-[...]
+### Recap
+
+A **prompt** is a token sequence \\(x = (x_1, \ldots, x_n)\\). GPT-2-small processes it layer by layer, maintaining a **residual stream** \\(h_i^{(l)} \in \mathbb{R}^{d_{\textrm{model}}}\\) for each position — a contextualized representation that accumulates the contributions of all attention heads and MLPs up to layer \\(l\\).
+
+Each of the 144 heads (12 layers × 12 heads) projects the residual stream into queries and keys, computes scores \\(z_{ij} = q_i \cdot k_j / \sqrt{d_k}\\), and applies softmax to produce an **attention distribution** over source positions:
+
+$$\hat{\pi}_j = \text{softmax}(z_j).$$
+
+This \\(\hat{\pi}\\) depends on both \\(x\\) (through the queries and keys) and the head's learned parameters. From it we read off the two diagnostics introduced in [Post 1]({% post_url 2026-02-17-why-softmax %}):
+
+$$\hat{\rho}_{\textrm{eff}} = \frac{\text{KL}(\hat{\pi} \| u)}{\log n}, \qquad \chi = \frac{\text{Var}_{\hat{\pi}}(\log \hat{\pi})}{(\log n)^2},$$
+
+where \\(u = (1/n, \ldots, 1/n)\\) is the uniform distribution, and we have normalized each by prompt length. No backward pass needed — \\(\hat{\pi}\\) is already computed in the forward pass.
+
+### The experiment
+
+GPT-2 small is known to have a circuit that performs indirect object identification. [^wang2022] Let's say we have a prompt of 15 tokens that reads:
+
+$$
+x = \textrm{When Alice and Bob went to the store, Bob gave a drink to ___}.
+\label{eq:good_prompt}
+$$
+
+The correct next token the model should predict is Alice (the indirect object of the second clause.) It turns out that Wang et al. showed that several heads perform various jobs in order to predict this next token correctly. One head detects a name has appeared twice, another suppresses the name that has appeared twice, another moves the name that appeared once, and so forth.
+
+For our experiments, we shall generate 50 IOI prompts of length \\(n=15\\) of exactly the same format as \\eqref{eq:good_prompt} along with 50 non-IOI prompts that have a similar format but no repeating name, e.g.
+
+$$
+x = \textrm{After Mary and John sat down for dinner, Sarah gave a gift to ___}
+$$
+
+which should not "activate" the circuit. 
 
 ---
 
