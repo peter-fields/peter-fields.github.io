@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "/opt/miniconda3/bin/python",
+    "jupyter.kernels.excludePythonEnvironments": [
+        "/opt/miniconda3/envs/gemini-logprobs/bin/python"
+    ]
+}
