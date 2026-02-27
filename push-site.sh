@@ -14,8 +14,8 @@ git merge backup --no-commit --no-ff 2>/dev/null || true
 # 2. Restore main's .gitignore (with notebooks/ line, not backup's version)
 git checkout HEAD -- .gitignore
 
-# 3. Remove any notebooks files that got staged from the merge
-git rm -r --cached notebooks/ 2>/dev/null || true
+# 3. Remove scratch notebooks from staging (final/ notebooks are kept for nbviewer)
+git rm -r --cached notebooks/*/scratch/ 2>/dev/null || true
 
 # 4. Commit and push if anything changed
 if ! git diff --cached --quiet; then
