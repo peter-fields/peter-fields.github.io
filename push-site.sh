@@ -17,6 +17,9 @@ git checkout HEAD -- .gitignore
 # 3. Remove scratch notebooks from staging (final/ notebooks are kept for nbviewer)
 git rm -r --cached notebooks/*/scratch/ 2>/dev/null || true
 
+# 3b. Explicitly stage final notebooks (git merge won't auto-stage files new to main)
+git checkout backup -- notebooks/*/final/ 2>/dev/null || true
+
 # 4. Commit and push if anything changed
 if ! git diff --cached --quiet; then
     git commit -m "sync from backup $(date +%F)"
