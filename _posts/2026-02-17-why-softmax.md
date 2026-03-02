@@ -50,7 +50,7 @@ Softmax is ubiquitous in transformers, yet its role in attention can feel more h
 
 ## Introduction: the attention mechanism
 
-Consider a stream of tokens (e.g. words from an LLM) to be embedded:
+Consider a stream of tokens to be embedded:
 
 $$
 x=\{x_1,x_2,...,x_i,...,x_T \}.
