@@ -3,4 +3,4 @@ _site
 .jekyll-metadata
 Gemfile.lock
 notebooks/*/scratch/
-**/.DS_Store
+**/.DS_Storenotebooks/anthropic_app/
