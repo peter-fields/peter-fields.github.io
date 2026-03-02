@@ -125,7 +125,7 @@ $$
 \label{eq:diagnostics}
 $$
 
-where \\(u = (1/n, \ldots, 1/n)\\) is the uniform distribution. No backward pass needed — \\(\hat{\pi}\\) is already computed in the forward pass.
+where \\(u = (1/n, \ldots, 1/n)\\) is the uniform distribution. Note: Post 1 used the notation \\(\partial\hat{\rho}\\) for the temperature susceptibility; here we write \\(\chi = \partial\hat{\rho}/(\log n)^2\\). No backward pass needed — \\(\hat{\pi}\\) is already computed in the forward pass.
 
 ---
 
