@@ -231,10 +231,12 @@ Furthermore, our correlation analysis does not account well for strong signal du
 
 If our analysis can take correlation graphs and turn them into candidate circuit graphs, this would help narrow down to a few candidate heads for a given circuit computation. If so, this could be a promising direction for scaling up (and speeding up) circuit discovery methods, e.g. correlation analysis to find candidates followed by causal interventions to determine mechanism.
 
-The significant \\(\Delta\chi\\) is also perhaps surprising — Post 1 predicted \\(\chi\\) should be low in both conditions, so we'd expect \\(\Delta\chi \approx 0\\). We'll have to think a little bit more in a future post about what \\(\chi\\) is (or is not) actually capturing.
+The significant \\(\Delta\chi\\) is also perhaps surprising — Post 1 predicted \\(\chi\\) should be low in both conditions, so we'd expect \\(\Delta\chi \approx 0\\). We'll have to think a little bit more in a future post about what \\(\chi\\) is (or is not) actually capturing. (We note that Kim (2026)[^kim2026] applies a related fluctuation-dissipation susceptibility to GPT-2 *training* dynamics, using it to detect grokking as a phase transition — a complementary direction to the inference-time head characterization pursued here.)
 
 ---
 
 [^wang2022]: Wang et al. (2022). [Interpretability in the Wild: a Circuit for Indirect Object Identification in GPT-2 small](https://arxiv.org/abs/2211.00593).
 
 [^hoshal2024]: Hoshal et al. (2024). [Stimulus-invariant aspects of the retinal code drive discriminability of natural scenes](https://www.pnas.org/doi/10.1073/pnas.2313676121). *PNAS* 121(52):e2313676121.
+
+[^kim2026]: Kim, J. (2026). ["Thermodynamic Isomorphism of Transformers,"](https://arxiv.org/abs/2602.08216) arXiv:2602.08216.
