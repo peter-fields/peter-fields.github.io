@@ -60,8 +60,8 @@ plugins:
   - jekyll-remote-theme
 
 author:
-  # name   : "Peter Fields"
-  # avatar : "/assets/images/bio-photo.jpg"
+  name   : "Peter Fields"
+  avatar : "/assets/images/bio-photo.jpg"
   bio    : "Physicist interested in machine learning, statistical physics, and any topic where good questions are to be found."
   links:
     - label: "GitHub"
