@@ -78,3 +78,41 @@ Voting and reservoir both look "diffuse" in per-head fingerprints — ablation s
 - IOI: likely sparse circuits (Wang et al.)
 - General language: likely reservoir
 That taxonomy itself would be a useful result.
+
+## Scalable Pipeline: CLT + Vectorized ICA (Mar 2026)
+
+Current circuit discovery (ACDC, path patching, attribution patching) requires:
+- Human-defined task + metric upfront
+- Human-designed clean/corrupted prompt pairs
+- One circuit at a time, doesn't transfer
+
+**The scalable alternative**:
+
+1. **CLT decomposition** — compute cross-layer transcoder features once per model. Gives interpretable basis for residual stream at each layer. Anthropic building these at scale (Biology of LLMs). Inherited, not recomputed.
+
+2. **Project x into CLT feature basis** — x_feat ∈ ℝ^{T × n_features}, sparse (most features inactive per prompt). Compresses x from T×d_model to T×n_features where n_features << d_model for active features.
+
+3. **Vectorize** — x_feat_vec ∈ ℝ^{T·n_features}. Manageable because sparse. This dissolves the "which token" problem for ICA — joint position×feature space.
+
+4. **Sparse ICA on x_feat_vec** — unsupervised, run on large diverse corpus. ICs are independent activation patterns over (position, named-feature) pairs. No task-specific prompts needed. Human labels components *after* the fact.
+
+5. **Capacity ranking for cross-validation** — rank all heads by C(W_QK) from singular values. Parameter-only, one-time, instant. High-capacity heads should correspond to ICA components with large variance. Connects static (parameter) and dynamic (activation) views without intervention.
+
+**Why this scales**:
+- CLT features: one-time per model, reused for every circuit
+- ICA: unsupervised, parallelizable, scales with data not human effort
+- Capacity: O(n_heads × d_model²), no inference needed
+- Human bottleneck pushed to end, applied only to top components
+
+**Why ICs are interpretable here** (unlike raw ICA on x):
+- Features are CLT features = already labeled (e.g. "the 'John' name feature")
+- ICs become: "independent activation pattern over (position, CLT feature)" — readable as circuit components
+- A circuit is a set of correlated ICs that jointly implement a computation
+
+**Potential framing**: "unsupervised circuit discovery via sparse ICA on CLT-projected residual streams." IOI circuit = proof-of-concept validation. Methodology paper independent of any specific finding.
+
+**Connection to 4-way head characterization**:
+- ICA on x_feat_vec → OV/consequence side (what gets written, in interpretable coordinates)
+- Capacity + W_QK singular vectors → QK/mechanism side (what triggers the head, in same coordinates)
+- Full circuit: "head H reads CLT feature F_q at position i, writes CLT feature F_v at position j"
+- Both sides expressed in same CLT feature basis → unified description

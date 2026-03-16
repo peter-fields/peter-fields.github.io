@@ -14,16 +14,6 @@ Anthropic is where I can apply these skills to larger models, harder questions �
 
 ---
 
-<!--
-### Why Anthropic? v2
-
-In "The Urgency of Interpretability," Dario Amodei argues that the window for understanding AI systems closes as they become more capable — that this work has to happen now, before the gap between capability and comprehension becomes irreversible. I find this framing exactly right.
-
-Anthropic's mechanistic interpretability program — from the superposition hypothesis through sparse autoencoders to circuit tracing and cross-layer transcoders — is the most advanced in the field. No other lab has invested comparably in the foundational question of what these models are actually doing. Anthropic's structure as a public benefit corporation, without the commercial pressures that have visibly bent other labs' research agendas, means this work is likely to stay protected.
-
-I have already begun contributing to this program: developing forward-pass diagnostics for attention head circuitry and validating on the IOI circuit in GPT-2. My background in statistical physics — many-component systems, observational methods that inform costly interventions, the tension between system-specific idiosyncrasies and universal structure — transfers directly. Anthropic is where I can scale this up.
--->
-
 ---
 
 ## Why do you want to work on the Anthropic interpretability team? 
@@ -40,15 +30,6 @@ I am also interested in the hypothesis that complex reasoning involves more dist
 
 ---
 
-<!--
-### Why do you want to work on the Anthropic interpretability team? v2
-
-Anthropic’s papers "Circuit Tracing" and "On the Biology of a Large Language Model" develop techniques that intervene at the level of the MLPs between attention layers. Cross-layer transcoders build attribution graphs tracing feature-to-feature computation through MLPs and OV circuits — a major advance. But the QK circuits that determine which token positions attend to others are deliberately left out: a significant open gap. Per-prompt analysis of attention patterns is also computationally expensive and doesn’t scale.
-
-My diagnostic tools are designed to address both problems. Rather than analyzing heads per-prompt, I track statistics over many prompts: the KL-divergence of a head’s attention distribution from uniform (selectivity) and its derivative with respect to an auxiliary temperature (stability). Both require only a forward pass. In the IOI circuit on GPT-2, shifts between circuit-activating and non-activating prompts are statistically significant (p=0.0002 and p<0.0001). Cross-head covariance of these statistics shows early promise as a scalable screening method — identifying circuit candidates before costly mechanistic intervention.
-
-This follows from my background in statistical physics applied to biology, where observational methods do real work before expensive experiments. I want to develop this into a full pipeline at Anthropic, scaling from GPT-2 to frontier models. I am also interested in the hypothesis that complex reasoning tasks employ more distributed, less circuit-like computation — closer to reservoir dynamics — in which case my toolkit for collective dynamics is well-suited. And looking further: if circuits can be characterized at inference time, can we promote their formation during training? One concrete direction — constraining attention selectivity during training, relaxing the constraint with layer depth — follows directly from the information-theoretic framework I have been developing.
--->
 
 ---
 

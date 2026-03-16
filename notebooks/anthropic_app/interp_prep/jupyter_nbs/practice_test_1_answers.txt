@@ -1,0 +1,43 @@
+=========================================================
+PRACTICE TEST 1 (SUNDAY) - ANSWER KEY & MONDAY HINTS
+=========================================================
+
+--- ANSWERS FOR TEST 1 ---
+
+Q1: Numerically Stable Log-Softmax
+- The Trap: Computing softmax first and then taking the log causes overflow to infinity (or NaN) for large numbers like 1000.
+- The Core Trick: The LogSumExp trick. Subtract the maximum value of the array from the array before exponentiating.
+- Implementation:
+  z_max = np.max(z, axis=axis, keepdims=True)
+  return (z - z_max) - np.log(np.sum(np.exp(z - z_max), axis=axis, keepdims=True))
+
+Q2: Optimal einsum Contraction
+- The Trap: Contracting the embedding (V, d) directly with the unembedding (d, V) creates a massive (V, V) intermediate tensor that will cause an Out-of-Memory (OOM) error for real-world vocabulary sizes.
+- The Core Trick: Pass `optimize=True` to let NumPy dynamically find the optimal contraction path (usually right-to-left or middle-out).
+- Implementation: np.einsum('vd,dh,ho,ou->vu', W_E, W_V, W_O, W_U, optimize=True)
+
+Q3: Skip-Trigram Attribution
+- The Trap: Trying to write one massive equation for the whole sequence.
+- The Core Trick: An attention head acts independently on two streams. You need the (V, V) affinity matrix for QK, and the (V, V) routing matrix for OV.
+- Implementation:
+  A = W_E @ W_QK @ W_E.T  # QK circuit mapping (attention from b to a)
+  B = W_E @ W_OV @ W_U    # OV circuit mapping (effect on c from a)
+  return np.einsum('ba,ac->bac', A, B)
+
+Q4: Residual Stream Analysis
+- Part 1 (Direct Path): 
+  - The Trick: The "zero-layer" path bypasses all attention/MLPs. Just multiply embeddings by unembeddings: `W_E[tokens] @ W_U`.
+- Part 2 (Head Attribution): 
+  - The Trick: Matrix multiplication order matters. Apply the attention pattern to the input X first `(attention_pattern @ X)`, then push that result through the linear projections `W_V @ W_O @ W_U`.
+- Part 3 (Q-Composition): 
+  - The Trick: Layer 2's query reads from the exact subspace that Layer 1's output wrote to. Therefore, the virtual weights are the dot product of L1's OV matrix transposed and L2's Q matrix: `W_OV_L1.T @ W_Q_L2`.
+
+
+--- HINTS & STUDY GUIDE FOR TEST 2 (MONDAY) ---
+
+Before you take Test 2 tomorrow, make sure you are comfortable with:
+1. Matrix Calculus: Review how to calculate the Jacobian of the Softmax function.
+2. The Associative Property of Matrix Multiplication: If you have to compute (A @ B) @ C, under what conditions is it computationally cheaper to compute A @ (B @ C)? 
+3. Singular Value Decomposition (SVD): Review how to extract singular values and calculate "variance explained".
+4. Sparse Autoencoders (SAEs): Review the basic forward pass (encode -> ReLU -> decode).
+=========================================================

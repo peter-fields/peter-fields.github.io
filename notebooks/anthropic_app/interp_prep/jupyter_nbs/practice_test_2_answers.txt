@@ -1,0 +1,35 @@
+=========================================================
+PRACTICE TEST 2 (MONDAY) - ANSWER KEY
+=========================================================
+
+Q1: Softmax Jacobian & Attention Gradient
+- The Trap: Forgetting the outer product in the Jacobian. The off-diagonals must be negative.
+- Jacobian Trick: pi = softmax(z) -> return np.diag(pi) - np.outer(pi, pi)
+- Gradient Trick: The gradient of the loss w.r.t attention weights is `dW = dL_dout @ V.T`. Apply the Softmax Jacobian to this row-by-row to get the pre-softmax gradient `dS`.
+
+Q2: Level 4 Boss - O(T) Linear Attention
+- The Trap: Executing `(Q @ K.T) @ V` creates a (T, T) matrix. If T is large, it crashes.
+- The Core Trick: Matrix multiplication is associative. Compute `K.T @ V` first. This creates a tiny (d_k, d_v) matrix, completely bypassing the sequence length bottleneck.
+- Implementation:
+  KV = np.einsum('td,tv->dv', K, V)
+  return np.einsum('td,dv->tv', Q, KV)
+
+Q3: Circuit Analysis & SVD
+- Part 1 Trick: Contract the head dimension correctly: `W_QK = np.einsum('hmd,hkd->hmk', W_Qs, W_Ks)`.
+- Part 2 & 3 Trick: Run `u, s, v = np.linalg.svd(W_OV)`. The "variance explained" is proportional to the singular values squared (`s**2`). Calculate the cumulative sum of `s**2`, divide by the total sum, and find the first index where it crosses the threshold.
+
+Q4: Advanced Interpretability
+- Part 1 (Entropy): 
+  - The Trap: `np.log(0)` results in NaN. 
+  - The Trick: Add a tiny epsilon: `-np.sum(p * np.log(p + 1e-10), axis=-1)`.
+- Part 2 (Induction Score): 
+  - The Trick: You don't need a complex loop. For a sequence length 2n, the induction pattern is specifically located on the shifted sub-diagonal representing "attend to the token immediately following the previous occurrence of the current token."
+- Part 3 (SAE): 
+  - The Trick: The forward pass is `f = np.maximum(0, x @ W_enc + b_enc)`. Use `np.argsort(f, axis=-1)[:, -k:]` to grab the top-k indices, and then reconstruct using `f @ W_dec + b_dec`.
+- Part 4 (Self-Reinforcing Circuits):
+  - The Core Trick: You are hunting for a feature 'f' where its vector direction in the residual stream survives two attention heads and maps strongly back onto its own encoder projection.
+  - Implementation logic:
+    virtual_OV = W_OVs_L2[h2] @ W_OVs_L1[h1]
+    feature_out = virtual_OV @ W_dec[f, :]
+    alignment = W_enc[:, f] @ feature_out
+=========================================================

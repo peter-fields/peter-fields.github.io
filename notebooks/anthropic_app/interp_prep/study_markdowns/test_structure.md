@@ -1,4 +1,4 @@
-# What the Test Probably Looks Like
+# What the Test Probably Looks Lik
 
 4 questions, 120 min, multi-part questions gated (must pass part N to unlock N+1).
 Final part of Q4 is intentionally very hard — don't sacrifice Q1-3 chasing it.
