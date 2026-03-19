@@ -9,6 +9,9 @@ Usage: python generate_pdfs.py
 import os
 import re
 from xhtml2pdf import pisa
+from pygments import highlight
+from pygments.lexers import PythonLexer, get_lexer_by_name, TextLexer
+from pygments.formatters import HtmlFormatter
 
 STUDY_MARKDOWNS = os.path.join(os.path.dirname(__file__), "study_markdowns")
 TENSOR_NOTATION = "/Users/pfields/Git/peter-fields.github.io/notebooks/tensor_notation/tensor_notation_settled.md"
@@ -23,8 +26,11 @@ FILES = [
     (os.path.join(STUDY_MARKDOWNS, "python_numpy_gotchas.md"), "python_numpy_gotchas.pdf"),
 ]
 
+PYGMENTS_CSS = HtmlFormatter(style="vs").get_style_defs(".highlight")
+
 CSS = """
 <style>
+""" + PYGMENTS_CSS + """
   @page {
     margin: 2cm 3cm 2cm 1.8cm;  /* wider right margin for handwritten notes */
   }
@@ -137,6 +143,7 @@ def md_to_html(md_text):
     lines = md_text.split("\n")
     html_lines = []
     in_code = False
+    code_lang = "python"
     code_lines = []
     in_ul = False
     in_ol = False
@@ -167,20 +174,36 @@ def md_to_html(md_text):
         # Fenced code blocks
         if line.startswith("```"):
             if in_code:
-                def fmt_code_line(l):
-                    # preserve leading indentation, use br for line breaks
-                    indent = len(l) - len(l.lstrip(" "))
-                    return "&nbsp;" * indent + l.lstrip(" ")
-                escaped = "<br/>".join(fmt_code_line(l) for l in code_lines)
-                html_lines.append(f"<pre><code>{escaped}</code></pre>")
+                code_text = "\n".join(code_lines)
+                try:
+                    lexer = get_lexer_by_name(code_lang)
+                except Exception:
+                    lexer = PythonLexer()
+                formatter = HtmlFormatter(style="vs", noclasses=False, nowrap=False)
+                highlighted = highlight(code_text, lexer, formatter)
+                # xhtml2pdf needs inline font size on the pre
+                highlighted = highlighted.replace(
+                    '<div class="highlight">',
+                    '<div class="highlight" style="font-size:8.5pt;line-height:1.7;">'
+                )
+                # xhtml2pdf collapses \n — replace with <br/> inside pre
+                highlighted = re.sub(
+                    r'(<pre[^>]*>)(.*?)(</pre>)',
+                    lambda m: m.group(1) + m.group(2).replace('\n', '<br/>') + m.group(3),
+                    highlighted, flags=re.DOTALL
+                )
+                html_lines.append(highlighted)
                 code_lines = []
+                code_lang = "python"
                 in_code = False
             else:
                 close_list()
+                lang = line[3:].strip().lower() or "python"
+                code_lang = lang
                 in_code = True
             continue
         if in_code:
-            code_lines.append(line.replace("<", "&lt;").replace(">", "&gt;"))
+            code_lines.append(line)
             continue
 
         # Headings

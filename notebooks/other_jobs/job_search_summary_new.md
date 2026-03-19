@@ -46,6 +46,15 @@ PhD-level researcher in statistical physics/biophysics. Primary language Julia; 
 - **Location:** San Francisco
 - **Status:** 🔲 Apply next — high reuse of Anthropic materials
 - **Notes:** "Mechanistic interpretability or spiritually related disciplines." PhD required. Very similar to Anthropic role.
+- **Additional Information draft (2026-03-19):**
+
+> Current circuit discovery relies on activation patching — costly interventions that don't scale. I've developed forward-pass-only attention statistics (KL divergence from uniform, temperature susceptibility) that identify circuit-member heads without interventions. Applied to IOI in GPT-2: p=0.0002 and p<0.0001 discriminating circuit from non-circuit heads across prompt types.
+>
+> This is documented in an ongoing blog series at peter-fields.github.io and in a notebook at github.com/peter-fields/peter-fields.github.io. My arXiv preprint (arxiv.org/abs/2512.09152) demonstrates the statistical physics background behind this approach — using observational statistics over ensembles to reveal structure that per-instance interventions miss.
+>
+> I'm applying because OpenAI's scale and resources make it uniquely positioned to test whether these tools generalize beyond the small circuits where they've been validated, and the safety mission makes that generalization matter.
+
+  **NOTE**: framing is "scalable circuit head identification," NOT "QK circuit gap" — the diagnostics operate on attention pattern outputs, not the QK mechanism itself. Don't claim to address the QK gap with Posts 1-2.
 
 ### Google DeepMind — Research Scientist, Interpretability of LLMs
 - **Link:** https://startup.jobs/research-scientist-interpretability-of-llms-deepmind-6412235
@@ -165,6 +174,14 @@ PhD-level researcher in statistical physics/biophysics. Primary language Julia; 
 
 ### TikTok/ByteDance — ML Research Scientist, Atomistic AI (Seattle)
 - **Notes:** AI for science at molecular scale. Check careers page.
+
+---
+
+## TIER 1B (continued)
+
+### Perplexity — Research Internship
+- **Status:** 🔲 Apply — details TBD
+- **Notes:** Added 2026-03-17. Look up role and add link/details next session.
 
 ---
 

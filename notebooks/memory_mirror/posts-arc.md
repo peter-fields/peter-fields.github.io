@@ -33,8 +33,15 @@
 - J_diff = W_act Wᵀ_act − W_null Wᵀ_null (Gaussian hidden units / factor analysis for now)
 - J_diff cancels layer-depth confound and structural MLP-attention correlations
 
-## Post 4: Binary RBM + MI Regularization for Mode Selection (planned)
+## Post 4: W_QK = G + B Decomposition (current direction, 2026-03-18)
+- W_QK^h = G^h (symmetric, content-matching metric) + B^h (antisymmetric, directed routing 2-form)
+- Shared structure across heads: G_crude = mean_h G^h, B_crude = mean_h B^h — implicit geometry of the communication bus
+- Key result so far: B top modes live in compute subspace (W_E mass ~0.003), G in token-identity subspace (~0.69)
+- Experiments 1–4 done in `notebooks/post4_qk_metric/scratch/`. See [idea_qk_metric.md](idea_qk_metric.md).
+- SAE comparison (exp 7) still TODO — needs py311 env
+
+## Post 5 candidate: Binary RBM + MI Regularization (saved from old Post 4 plan)
 - Upgrade from Gaussian to binary hidden units (circuits are on/off — binary more natural than Gaussian)
 - Kyle's factored-MPF code + MI regularization between visible/hidden spins: selects most significant modes first, solves rotational ambiguity
 - Kyle likely co-author; Bialek academic lineage (Peter + Kyle → Stephanie Palmer → Bill Bialek → same lineage as Dario Amodei)
-- Training dynamics / Kim 2026 / phase transitions deferred to Post 5
+- Training dynamics / Kim 2026 / phase transitions also candidate for this slot
