@@ -2,5 +2,12 @@ _site
 .sass-cache
 .jekyll-metadata
 Gemfile.lock
+**/.DS_Store
 notebooks/*/scratch/
-**/.DS_Storenotebooks/anthropic_app/
+notebooks/anthropic_app/
+notebooks/memory_mirror/
+notebooks/other_jobs/
+notebooks/phase_readout/
+notebooks/post4_qk_metric/
+notebooks/tensor_notation/
+notebooks/interp_prep/
