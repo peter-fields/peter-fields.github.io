@@ -77,6 +77,32 @@ Closest:
 - Hsu et al. 2024 (CD-T) — analytical circuit discovery without intervention (https://arxiv.org/abs/2407.00886)
 - Syed et al. 2024 (EAP / Attribution Patching) — gradient approximation of activation patching (https://aclanthology.org/2024.blackboxnlp-1.25.pdf)
 
+## 6. Induction Head Formation and Training Data Statistics
+
+Found during 2026-03-30 session while researching for Anthropic Fellows application.
+
+**Key finding:** Induction head formation is a sharp phase transition during training, driven by statistical properties of training data — not linguistic content specifically.
+
+- **Olsson et al. 2022** ("In-context Learning and Induction Heads") — phase transition is robust to dataset choice (mixed web vs. books-only). Induction heads form even on random token sequences. Paper treats data properties as roughly invariant — does NOT claim burstiness drives formation. Canonical citation for phase transition and mechanism.
+- **Singh et al. 2024** (arXiv:2404.07129, ICML) — "What needs to go right for an induction head?" Three subcircuits form sequentially. Data complexity (# classes, # labels) affects which subcircuit forms when.
+- **Reddy 2024** (arXiv:2312.03002, ICLR) — burstiness, within-class variability, Zipfian distribution all affect formation. Zipfian is special: enables both in-weights and in-context learning simultaneously.
+- **Kawata et al. 2025** (arXiv:2512.18634, NeurIPS) — proves phase transition based on data diversity, with precise threshold. "Max-sum ratio of trigger-to-trigger distances."
+- **Musat 2025** (arXiv:2511.01033) — formation time quadratic in context length. Governed by frequency of pattern repetitions in training data.
+- **Aoyama et al. 2025** (arXiv:2511.16893) — tracks formation across Pythia suite on The Pile, shows it's predictable.
+
+**NOTE:** Singh, Reddy, Kawata, Musat, Aoyama citations are from a web search and have NOT been directly verified by Peter. Verify before citing in papers. Olsson is verified and safe to cite.
+
+**Safety relevance:** If circuits form predictably from training data statistics, dangerous capability emergence may be predictable before deployment. Induction heads are proof of concept — open question is whether it generalizes to more complex circuits.
+
+## 7. CLT/Attribution Graph Technical Facts (verified 2026-03-30)
+
+- CLTs (Cross-Layer Transcoders) are **corpus-trained** — trained once on a large corpus, like SAEs
+- Attribution graphs are **per-prompt** — explicitly per-prompt in methods paper: "describe the steps a model used to produce an output for a target token on a particular prompt"
+- Corpus-level virtual weights exist but are problematic — features that never co-activate get spurious connections
+- Methods paper explicitly states: "Our graphs do not contain information about the influence of nodes on other nodes via their influence on attention patterns" — QK circuits excluded
+- SAEs (Cunningham et al. 2309.08600) — corpus-trained on the Pile (~7M activations). Output is per-activation sparse feature decomposition.
+- Peter's prompt-contrast approach is complementary: across-prompt, intervention-free, forward-pass-only — vs. CLT attribution graphs which are per-prompt and intervention-based
+
 ## TODO: Further Lit Searches
 - [ ] Search for "functional connectivity" + "transformer" or "neural network" — neuroscience-inspired approaches
 - [ ] Check if anyone has applied spectral clustering (not just hierarchical) to attention head statistics

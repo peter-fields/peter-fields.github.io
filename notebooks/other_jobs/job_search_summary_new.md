@@ -46,13 +46,13 @@ PhD-level researcher in statistical physics/biophysics. Primary language Julia; 
 - **Location:** San Francisco
 - **Status:** 🔲 Apply next — high reuse of Anthropic materials
 - **Notes:** "Mechanistic interpretability or spiritually related disciplines." PhD required. Very similar to Anthropic role.
-- **Additional Information draft (2026-03-19):**
+- **Additional Information draft (2026-03-21):**
 
-> Current circuit discovery relies on activation patching — costly interventions that don't scale. I've developed forward-pass-only attention statistics (KL divergence from uniform, temperature susceptibility) that identify circuit-member heads without interventions. Applied to IOI in GPT-2: p=0.0002 and p<0.0001 discriminating circuit from non-circuit heads across prompt types.
+> Current mechanistic interpretability relies on activation patching to identify circuit components — but patching is expensive and doesn't scale to the circuits that matter in frontier models. I've developed forward-pass-only attention statistics (KL divergence from uniform, temperature susceptibility) that read out circuit structure directly from attention representations, without interventions. Applied to the IOI circuit in GPT-2, these statistics discriminate circuit from non-circuit heads with p=0.0002 and p<0.0001 across prompt types.
 >
-> This is documented in an ongoing blog series at peter-fields.github.io and in a notebook at github.com/peter-fields/peter-fields.github.io. My arXiv preprint (arxiv.org/abs/2512.09152) demonstrates the statistical physics background behind this approach — using observational statistics over ensembles to reveal structure that per-instance interventions miss.
+> The statistical physics background — using ensemble-level observational statistics to reveal structure that per-instance measurements miss — is documented in my arXiv preprint (arxiv.org/abs/2512.09152) and in an ongoing blog series at peter-fields.github.io.
 >
-> I'm applying because OpenAI's scale and resources make it uniquely positioned to test whether these tools generalize beyond the small circuits where they've been validated, and the safety mission makes that generalization matter.
+> The practical payoff is scalability: if attention representations encode circuit membership in a way that's legible without interventions, it becomes feasible to monitor how head specialization evolves as models scale, or to audit deployed models without running counterfactual experiments. Testing whether these statistics generalize from GPT-2's clean circuits to the messier, more distributed representations in frontier models is exactly the kind of work OpenAI is uniquely positioned to pursue.
 
   **NOTE**: framing is "scalable circuit head identification," NOT "QK circuit gap" — the diagnostics operate on attention pattern outputs, not the QK mechanism itself. Don't claim to address the QK gap with Posts 1-2.
 

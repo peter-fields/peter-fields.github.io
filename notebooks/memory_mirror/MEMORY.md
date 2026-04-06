@@ -3,7 +3,7 @@
 ## Instructions for Claude
 - **Session start**: check Current Work date against today's. If stale (>1-2 days), ask Peter what he's working on and rewrite it. Always read and surface both **Current Work checklist** and **Persistent TODOs** at the start of every session.
 - **Proactively maintain memory files** — minor updates (dates, bullets) just do; propose structural changes before making them. Keep MEMORY.md under 150 lines.
-- **Sync memory_mirror** — after any memory file edit, cp changed file(s) to `notebooks/memory_mirror/`. Never delete from mirror without asking.
+- **Sync memory_mirror** — a PostToolUse hook auto-syncs on every Edit/Write to the memory dir. Do NOT run `cp` manually — it's redundant and triggers a permission prompt.
 - **Never delete .md files** (memory or repo) without asking.
 - **Confirm before risky actions** — destructive git ops, pushing, deleting files.
 - **No LaTeX in chat** — write math in plain text (x^i, W_QK, sum_s, etc.). LaTeX only in .md files that will be rendered. See [feedback_communication.md](feedback_communication.md).
@@ -12,46 +12,78 @@
 
 ## Recently Completed Work *(for Claude: use to detect stale info in detail files)*
 
-**As of 2026-03-19, Peter has recently completed:**
-- **2026-03-17**: Anthropic RS Interpretability coding screen. Q1–Q3 + Q4 part 1 done fully. Q4 part 2 (induction circuit, two-hot encoding): prev-token head done, ran out of time on induction head. Q4 part 3 not reached. Waiting for results.
-- **2026-03-18**: Post 4 direction decided — W_QK = G + B decomposition. Experiments 1–4 run in `notebooks/post4_qk_metric/scratch/`. Key result: B top modes in compute subspace (W_E mass ~0.003), G in token-identity subspace (~0.69).
-- **2026-03-03**: Anthropic application submitted. All essay edits complete (see [anthropic-app-edits.md](anthropic-app-edits.md)). Site Priority 1 complete (about page, nav, trust signals).
-- **~2026-03-05**: Post 3 experiments complete (16 experiments). Final pipeline: contrastive ICA (7/8 circuit heads), out_mag > Var_v (30x ratio, p=1.2e-5), C_diff graph (9x enrichment at 5σ). Post not yet written.
+**As of 2026-03-31, Peter has recently completed:**
+- **2026-03-31**: OpenAI Early Career Cohort applied. Blurb: physics PhD → EBMs → mechanistic interp, neuroscience analogy, forward-pass diagnostics p<0.001.
+- **2026-03-31**: NVIDIA Fundamental Generative AI applied (both JR2012698 biomolecular and JR2013293 image/video/science). Resume tailored: biomolecular framing, CUDA.jl added.
+- **2026-04-02**: LASR Labs Summer 2026 applied (late). OpenAI Early Career Cohort applied. Research project arc sketched: induction head + reverse KL + C-reg.
+
+- **2026-03-30**: Anthropic Fellows Program (July 2026) submitted. Strong application — retinal ganglion cell transfer story as centerpiece, safety framing around circuit formation prediction, closed with RS rejection quote.
+- **2026-03-30**: BCG X AISI confirmed closed March 22 — missed window.
+- **2026-03-25**: OpenAI Researcher, Interpretability application submitted. Final blurb saved in canonical tracker. Key framing: observational statistics over prompt classes — no training (unlike CLTs/SAEs), no per-head intervention (unlike patching). Unique novelty.
+- **2026-03-25**: Job tracker consolidated into single canonical file: `notebooks/other_jobs/job_search_summary_march2026_new_new.md`. New roles added: OpenAI Alignment, OpenAI PhD General Track, OpenAI Early Career Cohort (draft blurb saved), Anthropic Alignment Science SF/London.
+- **2026-03-19**: Anthropic RS Interpretability REJECTED. "Promising," encouraged to reapply ~1 year.
+- **2026-03-18**: Post 4 direction decided — W_QK = G + B decomposition. Experiments 1–4 run in `notebooks/post4_qk_metric/scratch/`.
 
 *(Update this section each session with newly completed work.)*
 
 ---
 
-## Current Work — 2026-03-19
-**Status**: Anthropic coding screen COMPLETED 2026-03-17. Waiting for results.
+## Current Work — 2026-04-03
+**Short-term priorities (this week):**
 
-**Screen debrief**: Q1–Q3 + Q4 part 1 done. Q4 part 2: prev-token head done, ran out of time on induction head. Q4 part 3: never reached. Conceptual understanding correct; execution ran out of time.
+**Quick apply / EOI (low effort, do first):**
+- Constellation — EOI form
+- Sophia Sanborn (Stanford) — cold email, reference ENIGMA + shared research interests
+- GI Lab UCSB (gi.ece.ucsb.edu/join-lab) — short research idea + CV. Pitch G+B or log-spacing of attention eigenvalues
+- CAIS, MSR, IBM, Argonne — check if anything relevant open
+
+**Bigger apps (do after PyTorch project):**
+- NYU/Polymathic AI — research statement needed, HIGH PRIORITY
+- FAR.AI — rolling, mech interp explicit
+- Perplexity — $220K, welcomes physicists, resume + cover + research statement
+- OpenAI Researcher, Alignment — high material reuse
+- Apollo Research — EOI, revisit after PyTorch project (Python concern)
+
+**Research / CV building (highest leverage):**
+- PRR paper edits — get paper accepted
+- PyTorch induction head project — public repo, directly addresses Python/coding gap. **NeurIPS main track deadline ~1 month out.** Target: 2-result paper (heat cap tracks induction score + C-reg improves circuit formation at marginal B). Worst case strong repo.
+- Reading: Olsson ✓ (summary in notes), Reddy ✓ (read 2026-04-03, key findings: 2-layer attention-only, Gaussian mixture, B=burstiness, K=classes, L=32 labels, N=8 items, default B=2 K=256; metrics: ILA1, TILA2, IC accuracy), Singh, CLT methods paper
+
+## Current Work — 2026-03-30
+**Status**: Anthropic Fellows Program submitted 2026-03-30. Next: NVIDIA Fundamental Generative AI application.
+
+**2026-03-30 session**: Completed and submitted Anthropic Fellows application. Key framing: retinal ganglion cell → prompt contrast transfer story as centerpiece. Safety angle: predicting circuit formation from training data statistics. Closed with RS rejection quote. BCG X AISI confirmed closed March 22 — missed it. NVIDIA New College Grad 2026 posting deadline passed Feb 7 but still worth applying.
+
+**IMPORTANT framing (carry forward)**: Posts 1-2 diagnostics = **scalable circuit head identification** via observational prompt-class statistics. NOT the QK circuit gap (that would require G+B). CLTs/SAEs require training; patching requires intervention; Peter's approach requires neither. This is the core novelty.
 
 **Session start checklist**:
-1. **PRR paper edits** — protein sector paper received peer review; work through revisions (see `notebooks/anthropic_app/essays.md`)
-2. **Review Anthropic essays** — verbal fluency on diagnostics, circuit structure, biology→interp transfer
-3. **Paper reading plan** — CLT methods paper, Biology of LLM, Wang 2022 are top candidates
-4. **Python/PyTorch/TransformerLens brush-up** — make a concrete practice plan
-5. **Job applications** — BCG X is next highest priority
-6. **Blog/research direction** — see Active Threads below
-
-**Core research direction**: use controlled + active prompts to extract statistics identifying circuit heads. Key gap: CLT attribution graphs freeze attention weights (assume QK given); Peter's diagnostics (ΔKL, Δout_mag, contrastive ICA) operate in that gap. What W_QK structure is invisible to CLT but visible to contrastive prompting?
+1. **NVIDIA Fundamental Generative AI** — apply next, deadline passed but try anyway. Lead with temp tuning / generative model science, not interp.
+2. **PRR paper edits** — protein sector paper peer review revisions
+3. **BCG X AISI Postdoc** — CLOSED March 22. Monitor for future cohorts.
+4. **Paper reading plan** — CLT methods paper, Biology of LLM, Wang 2022, Cunningham et al. SAEs (2309.08600), Olsson et al. 2022 (induction heads), Dario's "Machines of Loving Grace" + "The Urgency of Interpretability"
+5. **Python/PyTorch/TransformerLens brush-up** — make a concrete practice plan
+6. **Blog** — Post 3 still unwritten; G+B tabled
 
 ---
 
 ## Persistent TODOs
 
 ### Applications
-- **Finish OpenAI interpretability app** — draft blurb in `notebooks/other_jobs/job_search_summary_new.md`; needs polish + submit
+- **✅ OpenAI Researcher, Interpretability** — submitted 2026-03-25
+- **✅ Anthropic Fellows Program (July 2026)** — submitted 2026-03-30. Confirmation received. Expect response in 4-6 weeks.
 - **BCG X AISI Postdoc** — HIGH PRIORITY, not yet applied
-- **Anthropic RS**: coding screen done 2026-03-17, waiting for results
-- **Perplexity research internship** — added 2026-03-17, details TBD
-- **Anthropic Fellows Program** — confirm deadline/rolling status before deciding when to apply
-- **Stanford ENIGMA, UK AISI, DeepMind, Salesforce**: all pending
-- Full tracker: `notebooks/other_jobs/job_search_summary_new.md`
+- **✅ OpenAI Early Career Cohort** — applied 2026-03-31 (starts June 3)
+- **✅ LASR Labs Summer 2026** — applied 2026-04-02, late submission with note
+- **NYU/Polymathic AI Postdoc** — HIGH PRIORITY, rolling, mech interp of scientific foundation models
+- **OpenAI Researcher, Alignment** — strong secondary, high material reuse
+- **Stanford ENIGMA** — formal role requires 2+ years post-PhD, skip for now. Cold email Sophia Sanborn (now at Stanford) directly — geometric/topological interp overlaps well.
+- **Geometric Intelligence Lab (UCSB)** — open positions, wants short research idea. Low effort. gi.ece.ucsb.edu/join-lab. Pitch G+B decomposition or log-spacing of attention eigenvalues (sloppy models / storage capacity angle).
+- **UK AISI, FAR.AI, Perplexity, Salesforce**: all pending
+- **Anthropic RS**: REJECTED 2026-03-19. Reapply ~early 2027.
+- **Canonical tracker**: `notebooks/other_jobs/job_search_summary_march2026_new_new.md`
 
 ### Blog Posts
-- **Post 1**: `_posts/2026-02-17-why-softmax.md` — READY TO PUBLISH
+- **Post 1**: `_posts/2026-02-17-why-softmax.md` — LIVE
 - **Post 2**: `_posts/2026-02-24-attention-diagnostics.md` — LIVE
   - **TODO**: causal verification of L8H1/L8H11 via activation patching (flagged as novel unlabeled heads)
 - **Post 3**: experiments DONE (out_mag > Var_v 30x ratio p=1.2e-5, contrastive ICA 7/8 heads, C_diff graph). Post not written. See [post3-plan.md](post3-plan.md).
@@ -77,7 +109,8 @@
 - [lit-review.md](lit-review.md) — novelty claims, related work, citations
 - [circuit-discovery-theory.md](circuit-discovery-theory.md) — circularity problem, ICA
 - [posts-arc.md](posts-arc.md) — full post arc details
-- [anthropic-application.md](anthropic-application.md) — final pass checklist + papers to re-read before interviews
+- [anthropic-application.md](anthropic-application.md) — RS Interpretability application (rejected March 2026); final pass checklist
+- [anthropic-fellows-app.md](anthropic-fellows-app.md) — Fellows Program (July 2026) essay bullets, framing decisions, status
 - [research_ideas.md](research_ideas.md) — all ideas, backburner, pointers to detail files
 - [idea_qk_metric.md](idea_qk_metric.md) — W_QK = G + B, experiments 1–4 results
 - [idea_alternating_attention.md](idea_alternating_attention.md)

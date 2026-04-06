@@ -478,6 +478,12 @@ Designed sequences give you G and B directly from logits, without full bilinear 
 3. **G-corrected Q-comp and V-comp**: exp9 only does K-comp.
 4. **Cross-seed stability** (Post 5 or later): train multiple attn-only-2l seeds, compare G eigenspaces via Procrustes. Stable → territory; unstable → map.
 
+## Status (2026-03-19): TABLED pending more convincing preliminary evidence
+
+Peter decided to table the shared G+B research direction after the 2026-03-19 session. The per-head G^h and B^h decomposition is solid (exact algebra, real empirical results). The shared structure claim needs validation first. **Before resuming**: run the 3 quick checks in the IOI validation section below. If they're weak or noisy, shared G+B is probably not the right story. Also: read SAEs and CLTs more carefully to understand the gap this work is trying to fill.
+
+---
+
 ## Session 2026-03-19: Unsupervised G+B — Loss Function, IOI Plan, Softmax Gap
 
 ### Why B (positional routing) is the crux of the whole framework
