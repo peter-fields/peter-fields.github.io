@@ -50,11 +50,10 @@
 
 ## Priority 5 — Personality / Personal sections
 
-### Vocab page (see [vocab-page.md](vocab-page.md) for full spec)
-- [ ] Create `_data/vocab.json` with initial entries (word, definition, pos, example, added date)
-- [ ] Create `vocab.md` page with layout + JS (word of the day, random word, search, word cloud, recently added)
-- [ ] Add "Vocab" to top nav in `_config.yml`
-- [ ] Spell-check vocab entries before committing
+### Vocab page — DONE (2026-04-09)
+- [x] Create `_data/vocab.json` with 241 entries (word, definition, pos, example, added date)
+- [x] Create `vocab.md` page with search, random word, recently added
+- [x] Add "Vocab" to top nav in `_config.yml`
 
 ### Writing / Substack
 - [ ] Add "Writing" nav item linking to Substack (once it exists)

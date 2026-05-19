@@ -77,6 +77,14 @@ Closest:
 - Hsu et al. 2024 (CD-T) — analytical circuit discovery without intervention (https://arxiv.org/abs/2407.00886)
 - Syed et al. 2024 (EAP / Attribution Patching) — gradient approximation of activation patching (https://aclanthology.org/2024.blackboxnlp-1.25.pdf)
 
+## 7. Persona Vectors and Activation Oracles (Evans-adjacent, relevant to W_QK metric direction)
+
+- **Chen et al. 2025** — "Persona Vectors: Monitoring and Controlling Character Traits in Language Models" (arXiv:2507.21509). Extracts trait directions from residual stream via contrastive mean difference (mean evil activations − mean non-evil activations), averaged across response tokens, per layer. Selects most informative layer by steering effectiveness. Monitors via projection of last prompt token activation onto persona vector. Traits studied: evil, sycophancy, hallucination. Authors: Runjin Chen (Anthropic Fellows), Andy Arditi, Henry Sleight (Constellation), Owain Evans, Jack Lindsey (Anthropic).
+  - **Connection to Peter's work**: Same contrastive logic as prompt-contrast approach, at residual stream level rather than per-head. Natural extension: decompose persona vectors into per-head contributors. W_QK implicit metric could reveal non-Euclidean geometry of persona vector space — traits orthogonal in Euclidean space may not be orthogonal under model's own geometry.
+
+- **Karvonen & Chua et al. 2026** — "Activation Oracles: Training and Evaluating LLMs as General-Purpose Activation Explainers" (arXiv:2512.15674). Trains LLMs to answer natural-language questions about residual stream activations injected as input tokens. Collects from 25%, 50%, 75% depth layers. Key application: model-diffing (difference between base and fine-tuned model activations reveals what fine-tuning changed). Co-advised by Owain Evans and Samuel Marks.
+  - **Connection**: Residual stream difference vectors as interpretability signal — complementary to per-head approach.
+
 ## 6. Induction Head Formation and Training Data Statistics
 
 Found during 2026-03-30 session while researching for Anthropic Fellows application.

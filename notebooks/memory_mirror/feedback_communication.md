@@ -15,5 +15,10 @@ type: feedback
 - Write math in plain text using Unicode and ASCII: x^i, W_QK, A^{ds}, sum_s, etc.
 - Reserve LaTeX only for actual .md/.tex files that will be rendered (e.g. blog posts with MathJax)
 
+## Coding practice style
+- Don't reveal the answer or solution before Peter says he's done — wait for him to ask for a review
+- When reviewing code, flag bugs without giving away the fix; let him find it first
+- Peter is Julia-primary; frame Python idioms by contrast when useful (e.g. aliasing vs copying, `[:]=` vs `=`)
+
 ## Hook test note
 - Auto-sync hook tested 2026-03-19 — this line added to verify PostToolUse cp fires without approval

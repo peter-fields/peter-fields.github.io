@@ -2,8 +2,8 @@
 name: research_ideas
 description: Master index of all mech interp research ideas, blog ideas, and post directions — points to relevant files
 type: project
+originSessionId: 14f8c394-1e56-45de-997d-4ff4de657c44
 ---
-
 # Research Ideas — Master Index
 
 ## Blog Posts (concrete, near-term)
@@ -135,6 +135,71 @@ See [idea_alternating_attention.md](idea_alternating_attention.md) for full expe
 - **C_diff circuit graph**: correlate out_mag separately on IOI and non-IOI, difference. 9x enrichment at 5σ, 34 edges, mechanistically correct top edges.
 - **Always-on heads limitation**: L0H1, L2H2, L3H0, L5H5, L6H9 invisible to Δ-based diagnostics — they fire on all prompts. Fundamental limitation; needs causal complement.
 - Full pipeline in [post3-plan.md](post3-plan.md).
+
+---
+
+## Research Idea: Ambiguous Signals → Computation in Superposition (logged 2026-05-02)
+
+**Status:** parked for future work. Do not share publicly. The deterministic-noise bridge is the scoopable technical move and should remain private until I'm actively working on this with a trusted collaborator.
+
+**One-line goal:** Develop a normative theory for *why* computation in superposition happens in neural networks, *how* it implements computation, and what the *necessary ingredients* for its formation are.
+
+**Starting point — Bauer & Bialek (2025), "Ambiguous signals and efficient codes"** (arXiv:2512.23531).
+- Information-bottleneck-style setup: signal *s* carries info about relevant variable *x*; many channels C_i each independently map s → C_i with limited per-channel capacity; goal is to maximize joint I({C_i}; x).
+- Key result (Eq. 19): at the optimum, individually ambiguous (non-injective, "folded") channel responses can be optimal — ambiguity is not a defect but a feature of capacity-constrained codes.
+- They show that "folding" the input axis (sawtooth-like C̄_i(s)) uniformly improves information transmission per unit capacity, provided different channels fold different parts of the input.
+- Grid cells and combinatorial gene expression in the fly embryo are their motivating biological examples.
+
+**Why this connects to MLPs / superposition:**
+- Structural analogy is tight: residual stream input x → many independent neuron computations h_i = GELU(w_i · x + b_i) → W_out combines them. Each neuron is a capacity-limited, partially-non-injective channel; population code carries the meaning. This is the same structure as Bauer-Bialek.
+- Conceptual claim: polysemanticity / superposition might be near-optimal *even with infinite width*, as long as per-neuron capacity is bounded by the nonlinearity's effective bit-width. This would be a different, complementary argument from the Anthropic toy-models story (which is sparsity-and-interference based).
+- The "folding helps" result is directly portable: nonlinearities like ReLU/GELU are non-injective, and Bauer-Bialek predicts this is *helpful* not costly.
+
+**The bridge — DETERMINISTIC NOISE (KEEP PRIVATE):**
+- Bauer-Bialek formalism uses stochastic σ_i(s) per channel. MLPs are deterministic, so the formalism doesn't transfer naively.
+- BUT: deterministic noise (Abu-Mostafa sense — irreducible variation a hypothesis class can't represent) is the right concept. From the perspective of recovering features from a population, a single neuron's lossy projection (everything orthogonal to w_i, everything outside the linear regime, etc.) acts as channel noise even though the computation is deterministic.
+- Choose granularity at "feature configuration" level (e.g., via SAE) rather than at the level of individual inputs x. Then σ_i(s) becomes the spread of h_i values consistent with a given feature configuration — well-defined, deterministic, but plays the role of channel noise in the Bauer-Bialek formalism.
+- This rescues the formal apparatus and makes Eq. 19 directly applicable to trained MLPs.
+
+**Concrete research directions to explore:**
+1. Re-derive Bauer-Bialek optimization with σ_i reinterpreted as deterministic noise (feature-configuration granularity). Check if Eq. 19 predicts geometric structure of trained MLPs (relationship between neuron sensitivity and within-configuration preactivation variance).
+2. Test "folding helps" empirically: do networks with sharper nonlinearities (ReLU, more folding per neuron) achieve more efficient codes per neuron than softer ones (GELU) at fixed width?
+3. Look for the "two-channel" structure (Fig 2g of Bauer-Bialek): in trained MLPs, do you find a mix of invertible monosemantic neurons and folded polysemantic ones, with the mix tilted toward folding when capacity is tight?
+4. Predictive question: given a DGP and capacity constraints, can you predict in advance how much superposition will emerge and what its geometry will be?
+
+**Why this is ambitious:**
+- The current superposition literature is largely descriptive (we observe it, characterize it, build SAEs to expose features). A normative theory tells us *why* it's there and *what determines its form*.
+- Predictive theory of representations is the holy grail this would feed into: given architecture + DGP + capacity, predict the representational geometry before training.
+- Connects mech interp to a much older theoretical tradition (efficient coding / Bialek-style information theory of biological networks) that has not been seriously imported into the field yet.
+
+**Caveats / things to be careful about:**
+- The choice of feature-configuration granularity is doing real work. SAE choice will affect predictions. Track this dependence.
+- Bauer-Bialek assumes a prior P(s) — for MLPs this becomes the data distribution, which is fine, but the small-noise approximation and Gaussian assumptions may not hold cleanly.
+- "Optimal code" arguments only matter if SGD actually finds optima or near-optima. Training dynamics could matter (cf. how Adam vs SGD changes privileged-basis story).
+
+**Conversation context:** This idea developed from a conversation working through Anthropic's "Privileged Bases" paper and the question of why MLPs have privileged bases but features don't live along the neuron basis. The Bauer-Bialek paper showed up as a possible normative explanation for why superposition is the *right answer* to a capacity-constrained coding problem rather than just a *thing networks happen to do*.
+
+**Extension — IB/DIB connections (logged 2026-05-17):**
+
+Worked through the Hänni et al. 2024 (arXiv:2408.05451) formalism carefully:
+- **b** ∈ {0,1}^m — boolean feature vector (feature space, m >> d; analogous to d_SAE)
+- **a** = Φ**b** ∈ R^d — residual stream (d analogous to d_model; Hänni conflates d_model = d_mlp for simplicity)
+- **Y** = C(**b**) ∈ {0,1}^m' — computed output (pairwise ANDs or arbitrary sparse boolean circuit)
+- φ_k (columns of Φ) are the feature encoding directions
+
+**IB mapping:** b = X (source), a = U (compressed representation), Y = C(b) (relevance variable). The rate-distortion tradeoff is: how much of b survives into a, sufficient to predict Y. Constraint d << m forces superposition.
+
+**Why Bauer-Bialek fits better than Murphy-Bassett for the normative theory:**
+- Murphy-Bassett (DIB): each bottleneck sees a *different* input component X_i — distributed sources
+- Bauer-Bialek: all channels see the *same* signal s — shared input, parallel capacity-limited channels
+- MLP neurons all receive the full residual stream **a** via W_in (which mixes all components) — so Bauer-Bialek structure is the right one: one shared signal, many parallel channels, joint decoding of Y
+- Murphy-Bassett would fit if each neuron read from a private slice of **a** — not the case
+
+**DIB as diagnostic tool (different angle, set aside for now):** DIB could be used empirically to *find* computation in superposition — define X_i = SAE features (b_k), Y = model output, train DIB, sweep β to find which features survive. Purely observational, no causal interventions needed. Connects to forward-pass diagnostics work. Challenge: discrete/sparse inputs need care. Set aside as too complicated for now.
+
+**Current preferred direction:** Bauer-Bialek normative theory + deterministic noise bridge. Bauer-Bialek explains why folded/polysemantic encodings are generically optimal under per-neuron capacity constraints — ruling out monosemantic solutions as suboptimal. IB sets up the optimization problem; Bauer-Bialek characterizes the optimal solution class.
+
+**Status:** Speculative. Keep private alongside the deterministic noise bridge.
 
 ---
 
