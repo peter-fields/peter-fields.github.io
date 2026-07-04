@@ -1,0 +1,12 @@
+submitted rev_-1: iprscan5-R20260623-010033-0944-38019260-p1m
+submitted fwd_+1: iprscan5-R20260623-010036-0517-48984356-p1m
+
+### rev_-1 (iprscan5-R20260623-010033-0944-38019260-p1m)
+  status: FINISHED
+  0 signature match(es):
+    (no domain signatures matched)
+
+### fwd_+1 (iprscan5-R20260623-010036-0517-48984356-p1m)
+  status: FINISHED
+  0 signature match(es):
+    (no domain signatures matched)

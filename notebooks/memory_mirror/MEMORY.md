@@ -1,156 +1,93 @@
 # Project Memory
 
 ## Instructions for Claude
-- **Session start**: check Current Work date against today's. If stale (>1-2 days), ask Peter what he's working on and rewrite it. Always read and surface both **Current Work checklist** and **Persistent TODOs** at the start of every session.
-- **Proactively maintain memory files** — minor updates (dates, bullets) just do; propose structural changes before making them. Keep MEMORY.md under 150 lines.
-- **Sync memory_mirror** — a PostToolUse hook auto-syncs on every Edit/Write to the memory dir. Do NOT run `cp` manually — it's redundant and triggers a permission prompt.
-- **Never delete .md files** (memory or repo) without asking.
-- **Confirm before risky actions** — destructive git ops, pushing, deleting files.
-- **No LaTeX in chat** — write math in plain text (x^i, W_QK, sum_s, etc.). LaTeX only in .md files that will be rendered. See [feedback_communication.md](feedback_communication.md).
+- **Session start**: check Current Work date vs today; if stale (>1-2 days), ask Peter and rewrite. Always surface Current Work + Persistent TODOs.
+- **Proactively maintain memory** — minor updates just do; propose structural changes first. **Keep MEMORY.md under 17KB / ~150 lines** (one line per entry; detail lives in topic files).
+- **Sync** — a PostToolUse hook auto-syncs the memory dir to memory_mirror. Do NOT `cp` manually.
+- **Never delete .md files** without asking. **Confirm before risky actions** (destructive git, pushing, deleting).
+- **No LaTeX in chat** — plain-text math (x^i, W_QK, sum_s). LaTeX only in rendered .md. See [feedback_communication.md](feedback_communication.md). Em-dashes: Peter uses them deliberately, don't strip ([feedback_em_dashes.md](feedback_em_dashes.md)).
+- **Peter is intuition-led / anti-rationalist** — give plain, jargon-free explanations when he's learning outside his domain; trust his gut; don't push him to rationalize or claim engagement he lacks ([feedback_intuition_style.md](feedback_intuition_style.md)).
 
 ---
 
-## Recently Completed Work *(for Claude: use to detect stale info in detail files)*
-
-**As of 2026-05-18, Peter has recently completed:**
-- **2026-05-18 (~5:44 AM CDT)**: **Stefan/Pivotal 2h work test submitted.** Submitted PDF writeup + Colab notebook. Task 1 (toy memorization) covered fully: Q1 accuracy across n_pairs (1.0 throughout), Q2 conceptual answer + empirical bigram-baseline finding (48% memorization via embed@unembed alone), Q3 partial. Task 2 (GPT-2 facts memorization) covered with: bar chart accuracy by category (capital best at 45%), LogitLens trajectory, *empirical discovery of " the"-prefix confound* (9 of 57 "correct" emerge at layer 0 trivially), delta plots showing rank narrows in early layers + logprob jumps at L7→L8. Q3 confounds + Q4 better-methods underdeveloped due to time. Strongest single insight: "correlated variables decrease effective number of variables" (effective-rank framing). Waiting for Stefan's response.
-- **2026-05-17**: **Anthropic Fellows — advanced past initial review.** Stage 2 (60-min CodeSignal Python debugging, no AI assistance, 5 days to complete) is the active next step. References (Schwab, Ngampruetikorn, Palmer) being contacted by Constellation. See [anthropic-fellows-app.md](anthropic-fellows-app.md).
-- **2026-05-04**: Constellation Astra Fellowship submitted (within AoE window). Empirical stream. Three research directions: prompt-contrast, Bauer-Bialek superposition theory, W_QK implicit metric. Mentor pitch: Owain Evans. Also eligible for Visiting Fellowship consideration.
-- **2026-05-03**: Pivotal Research Fellowship submitted.
-- **2026-04-22**: LASR Labs CodeSignal ML Engineering Core Assessment taken. Covered all 7 algorithms (kNN, k-Means, Decision Tree, GMM, Matrix Normalization, Bagging, Forward Prop) + Module 2 string/array problems. Got stuck on gradient descent numpy shape bug, didn't finish last problem.
-
-**Previously:**
-- **2026-03-31**: OpenAI Early Career Cohort applied. Blurb: physics PhD → EBMs → mechanistic interp, neuroscience analogy, forward-pass diagnostics p<0.001.
-- **2026-03-31**: NVIDIA Fundamental Generative AI applied (both JR2012698 biomolecular and JR2013293 image/video/science). Resume tailored: biomolecular framing, CUDA.jl added.
-- **2026-04-02**: LASR Labs Summer 2026 applied (late). OpenAI Early Career Cohort applied. Research project arc sketched: induction head + reverse KL + C-reg.
-
-- **2026-03-30**: Anthropic Fellows Program (July 2026) submitted. Strong application — retinal ganglion cell transfer story as centerpiece, safety framing around circuit formation prediction, closed with RS rejection quote.
-- **2026-03-30**: BCG X AISI confirmed closed March 22 — missed window.
-- **2026-03-25**: OpenAI Researcher, Interpretability application submitted. Final blurb saved in canonical tracker. Key framing: observational statistics over prompt classes — no training (unlike CLTs/SAEs), no per-head intervention (unlike patching). Unique novelty.
-- **2026-03-25**: Job tracker consolidated into single canonical file: `notebooks/other_jobs/job_search_summary_march2026_new_new.md`. New roles added: OpenAI Alignment, OpenAI PhD General Track, OpenAI Early Career Cohort (draft blurb saved), Anthropic Alignment Science SF/London.
-- **2026-03-19**: Anthropic RS Interpretability REJECTED. "Promising," encouraged to reapply ~1 year.
-- **2026-03-18**: Post 4 direction decided — W_QK = G + B decomposition. Experiments 1–4 run in `notebooks/post4_qk_metric/scratch/`.
-
-*(Update this section each session with newly completed work.)*
+## ⏰ ACTIVE REMINDERS
+- **MATS proctored-test disclosure — support form SUBMITTED 2026-06-27** (re: Applied AI Assessment; CodeSignal Copilot inadvertently ran hidden tests; Peter self-reported proactively/in good faith 6/24, offered a retake). Raj replied 6/26 asking him to fill out `matsprogram.org/support-a26` ("we'll take this into consideration when evaluating your application"); Peter submitted it 6/27. **Ball in MATS's court — no action unless they reply; delete once resolved.**- **CodeSignal "June 24" completion date — LIKELY A NON-ISSUE (timezone).** CodeSignal logged the MATS Research Taste Test as "June 24 10:33 am +12" (UTC+12) = June 23 22:33 UTC. Deadline June 23 11:59 PM AoE = June 24 11:59 UTC, so Peter finished ~13h early, on time; "June 24" is just a +12 display. Keep the email; only ping applications@matsprogram.org if MATS ever flags it. Delete this once confirmed moot.
 
 ---
 
-## Current Work — 2026-05-18
+## Recently Completed *(one line each; detail in topic files)*
+- **2026-06-29**: **PrincInt Research Scientist → advanced to a 30-min screening call** (conducted by Impact Ops recruiter **Travis Snow**; book a slot via their link). First positive interview signal in a while; strong-fit org (interpretability/foundations — same org running the Iliad Fellowship, fall fork). **Role is REMOTE-FIRST** (no London relocation needed — big plus for Peter; only remaining logistics nuance = UK/US timezone overlap + occasional travel). **📞 Call BOOKED: July 7, 11am (w/ Travis Snow, Impact Ops).** Posted pay band **$100–250K**; Peter's planned comp answer = redirect/ask-their-target first, and if pressed, "upper-middle ~$170–200K, flexible, fit-first" (he's strong early-career RS — PhD+paper, above the floor, not senior-staff ceiling; don't lowball from bridge-income anxiety; IL salary-history ban = needn't share past pay). 🔴 **Prep before 7/7 (tabled 6/29, pick back up early next week): 2-min background pitch + comp script + timezone answer + questions for them. Also confirm the calendar invite reads 11am CENTRAL (not 11am London = 5am his time).** ([princint-app.md])
+- **2026-06-27**: **MATS AI-use redo DONE / stream selection + ranking submitted.** After self-disclosing he'd AI-*condensed* his on-time Lee Sharkey proposal (vs the strict default no-AI-edit policy), MATS (Raj) granted a late-edit link; Peter resubmitted clean, fully self-written responses (Sharkey original draft; ARC paragraph; Gary Abel own prose + disclosed/*permitted* script) and rankings (**Lee Sharkey #1**, then Gary Abel, ARC). Detector-saga lesson (transferable to other apps): *condensing + de-hedging your own writing* is what trips AI detectors — to cut length, delete whole units yourself and keep your hedges/connectives ([mats-sharkey-proposal-notes.md]).
+- **2026-06-24**: **MATS Autumn 2026 R2 fully submitted/wrapped** (Gary Abel biosecurity DNA-screening exercise done; all streams + assessments in — ARC work test 6/30 still pending). St. Ignatius HS-teaching app + Meta FAIR prescreen archived to memory ([index-apps-and-projects.md]).
+- **2026-06-23**: MATS R2 Empirical **Research Taste Test DONE** (nanobot-memory pre-release scenario; led with training-data-prior benign hypothesis + baseline/discriminating tests). **Sharkey 300w proposal DRAFTED** (W_QK=G+B routing-dictionary idea; final text in [mats-sharkey-proposal-notes.md]). **Gary Abel screening DONE** (handled in a separate session). **ARC stream → invited to work test.**
+- **2026-06-22**: **PrincInt Research Scientist SUBMITTED** ([princint-app.md]).
+- **2026-06-16**: PRR revision emailed to coauthors (DWS); awaiting feedback → APS resubmit ([prr-paper-revision.md]).
+- **2026-06-11**: Meta FAIR prescreen submitted; MATS **advanced to Round 2**; Anthropic Fellows + Constellation Astra **REJECTED**.
+- **2026-06-01/04**: Meta FAIR postdoc applied (6/1); Pivotal/Stefan **REJECTED** (6/4).
+- **2026-05-21**: LASR Summer 2026 **REJECTED**; HS science teaching applied; Anthropic Fellows Stage 2 debug test (2/6 bugs).
+- **Earlier (Mar 2026)**: OpenAI Interp (submitted 3/25), OpenAI Early Career + NVIDIA GenAI (3/31), Anthropic Fellows submitted (3/30), Anthropic RS Interp **REJECTED** 3/19, Post 4 W_QK=G+B direction decided 3/18.
 
-**Active deadline: Anthropic Fellows Stage 2 CodeSignal — 5 days from invite (~2026-05-22 EOD local).** Confirm exact deadline against CodeSignal invite email. See [anthropic-fellows-app.md](anthropic-fellows-app.md) for full prep plan, rules, and test surface area. **No AI assistance allowed during the test (no Claude Code, no Cursor, no Copilot).**
+---
 
-**Other immediate priorities:**
-- Stefan/Pivotal 2h work test — **SUBMITTED 2026-05-18 ~5:44 AM CDT.** Awaiting Stefan's response. See [stefan-work-test-brief.md](stefan-work-test-brief.md) for what was learned.
-- UK AISI Model Transparency — deadline 2026-05-24
-- Python practice — central gap; Anthropic Fellows debugging assessment is the immediate proving ground
+## Current Work — 2026-07-03
 
-**Recently expired / unresolved:**
-- BlueDot Technical AI Safety Course intensive — 4–9 May 2026 (status?)
-- ARBOx4 (Oxford) — deadline May 8 (applied?)
-- Blue Dot Technical AI Safety Project Sprint — deadline May 10 (applied?)
+**🚨 Bridge income (TOP PRIORITY):** contract ENDED end of June 2026; postdocs start Sept–Jan. Backup gap-income ideas if bar work is slow: tutoring (Wyzant), Snorkel AI Project Rudder (RLHF labeling, ~$30-45/hr), adjunct, freelance tech writing, Julia/Python consulting. St. Ignatius HS-teaching app submitted 5/21, awaiting ([ignatius-teaching-app.md]).
+**🍸 Bar work (chosen active bridge plan, Chicago):** resume FINALIZED 6/29 (canonical Word doc on Peter's Desktop `Fields_Peter_Bar_Resume_2026.docx` — **authoritative, do NOT regenerate/overwrite without asking**; Dock at Montrose Beach 2023 barback→server, PhD OFF / "recently finished grad school"). Certs DONE (BASSET valid to 9/3/2026 + Food Handler 6/29). Ref: **Danyel Duncan** confirmed (former AGM, now Zooba Group; (419) 297-3068, danyel@zoombagroup.com). Availability 3–4 shifts/wk nights/weekends (1 wk away in Aug). 🟢 **RESUME SENT to lots of places 7/03 — now WAITING TO HEAR BACK** (follow up if quiet; mid-afternoon 2–4pm best for walk-ins). Optional: if Maddie replies, the valuable ask is "who's hiring," not the reference.
 
-**Near term priority — make a plan for:**
-- Postdoc/academic route: NYU/Polymathic AI, BCG X AISI, Geometric Intelligence Lab (UCSB), Stanford ENIGMA, cold emailing
-- Funding fellowships: Coefficient Giving RFP, LTFF (rolling), Timaeus Research Fellows, BlueDot Career Transition Grant
-- High school science teaching job — applying
+**🎯 PrincInt Research Scientist — SCREENING CALL July 7, 11am** (w/ Impact Ops recruiter Travis Snow). First strong interview signal in a while; remote-first interp/foundations RS role (same org as the Iliad Fellowship). **🔴 PREP before 7/7 (tabled 6/29):** 2-min background pitch + comp script (redirect/ask-their-target first; if pressed "upper-middle ~$170–200K, flexible, fit-first" — don't lowball from bridge-income anxiety; IL salary-history ban = past pay needn't be shared) + UK/US timezone answer + questions for them. **Confirm the invite reads 11am CENTRAL (not 11am London = 5am his time).** ([princint-app.md])
 
-**After BlueDot course:**
-- PyTorch induction head project — highest leverage CV item
-- NYU/Polymathic AI — research statement needed, HIGH PRIORITY, rolling
-- CAIS, FAR.AI, Apollo — apply after PyTorch project
-- Perplexity — $220K, welcomes physicists
+**MATS Autumn 2026 R2 — submitted/wrapped; only ARC open.** Sharkey (#1) + Gary Abel (#2) streams done and UNAFFECTED. **ARC stream (#3) — 🟡 DECISION PENDING (gut leans SKIP).** Jacob granted a conditional extension 6/30: submit the 3-hr work test **July 15** best-efforts, ARC decision due to MATS **7/22**, full process = test→phone interview→onsite (tight window). Per Peter's benign reading, worst case ARC just drops out and Sharkey/Gary Abel are UNHARMED (streams evaluate separately). It's his #3 and he's burnt out on the testing gauntlet. ⏳ **Tabled 6/30 — don't re-raise unprompted, BUT he owes Jacob a courtesy reply before the 7/15 test date.** ([mats-round2-streams.md])
 
-**Research / CV building (highest leverage):**
-- PRR paper edits — get paper accepted
-- PyTorch induction head project — public repo, addresses Python gap
-- Reading: Singh, CLT methods paper (Olsson ✓, Reddy ✓)
+**PRR paper + temp-tune repo — ✅ OFF DESK.** Full revision + caption audit done (Fig 2 Δ→5/5 samples, Fig 3 M=71/T=2.05, A3(c) M=40; all verified). **2026-07-02: new diff + reply docs SENT to coauthors** → awaiting Stephanie/David final sign-off (Wave done/approves) → APS PRR upload. temp-tune reproducibility repo fully PUBLISHED 7/02 (all 4 appendix figs, PRs #8/#9; public repo + portfolio mirror + private backup in sync). Peter expects smooth sailing ([prr-paper-revision.md]).
+
+**Near-term app deadlines:** BlueDot Technical AI Safety Project Sprint **~July 5** (targeted bridge project, course-grad priority — decide in/out). **Notre Dame Faith & AI postdoc July 1 = PASSED / skipped** (was deprioritized; $80K/yr faith-AI in-residence, physicist-interpreter + Catholic dignity/Pope-Leo-XIV angle if ever revisited next cycle). Fall residency fork below carries the next clocks.
+
+**CV pivot — 🔵 ON BACKBURNER (2026-06-24, not off the ground yet; deprioritized for a while):** compressed-computation project (Hänni U-AND + Bauer-Bialek, mostly NumPy) was to replace the dropped PyTorch induction-head project; Stefan Heimersheim = audience ([compressed-computation-project.md]).
+
+**Academic route (no coding tests):** NYU/Polymathic postdoc (HIGH PRIORITY, rolling); Geometric Intelligence Lab UCSB (needs toy-model blog first); cold-email academics.
+
+**⛰️ FALL 2026 RESIDENCY FORK — pick ONE (all Sept–Dec, time-conflicting, can't stack); apps are cheap + staggered so apply to all 3, decide on offers:** (a) **Iliad Fellowship** (PrincInt residency, `princint.ai/programs/residency/`) — LISA London, Sept 7–Dec 4, applied math for AI alignment, **$6K/mo housing+travel allowance**, apply **7/27 AoE** (easy stage-1 form); best theory-fit (physics/W_QK); *distinct from PrincInt Research Scientist role submitted 6/22.* (b) **Singapore AI Safety Fellowship** (aisafety.sg) — Singapore, **Sept 21–Dec 4**, mentor-matched joint technical+governance research (mentors: Oxford/NUS/Tsinghua/Fudan/Hebrew U/Concordia AI), **SGD 5K/mo + housing + travel + up to USD 30K compute/project**; areas = technical safety, agent governance, loss of control; apply **7/10**; best stipend+compute, leans applied/governance. (c) **ARENA 9.0** — LISA London, Oct 5–Nov 6, PyTorch ML-for-alignment bootcamp, costs covered (no stipend), apply **7/12 AoE**; best for closing Peter's PyTorch gap (teaching-staff option 8/2 — skip, gap shows there).
+
+**🎯 Next-app queue (Peter's order, set 2026-06-24; the fall fork above sits alongside this):** (1) **Iliad Fellowship** — see Fall residency fork above (apply 7/27). (2) **Coefficient Giving Career Dev & Transition Funding** (GCR fund, rolling) — doubles as bridge income, consider near-parallel with Iliad. (3) **Geometric Intelligence Lab UCSB** (Google Form) — Peter has a friend in a temp position there; **asking him for a vibe check first** before applying (warm-intro path). The "toy-model blog" prereq was Peter's own strategic read (job page states no requirements) = the paused compressed-computation write-up, NOT a hard GI Lab requirement. (4) **W. Jeffrey Johnston** (wj2.github.io; Columbia/Fusi → UCSF asst prof July 2026; representational geometry, recruiting all levels) — rolling, cold-email wjeffreyjohnston@gmail.com.
+
+**Funding (after paper):** Coefficient Giving RFP, LTFF, Timaeus Fellows, BlueDot Career Transition Grant (all rolling).
 
 ---
 
 ## Persistent TODOs
 
-### Applications
-- **✅ OpenAI Researcher, Interpretability** — submitted 2026-03-25
-- **Anthropic Fellows Program (July 2026)** — **ADVANCED 2026-05-17.** Stage 2 = 60-min CodeSignal Python debugging, 5 days from invite, no AI assistance allowed. References being contacted now. Next stages: 5h take-home (late May) → 15-min research brainstorm interview (early June) → decisions (late June). Full notes: [anthropic-fellows-app.md](anthropic-fellows-app.md).
-- **BCG X AISI Postdoc** — CLOSED. Missed window twice.
-- **✅ OpenAI Early Career Cohort** — applied 2026-03-31 (starts June 3)
-- **✅ LASR Labs Summer 2026** — **CodeSignal taken 2026-04-22** (went so-so). Next: Airtable paper critique from abstract (AI safety reasoning, arrives soon). Interview invitations expected early May.
-- **NYU/Polymathic AI Postdoc** — HIGH PRIORITY, rolling, mech interp of scientific foundation models
-- **Argonne National Laboratory** — postdoc, check for AI/ML/theory openings
-- **Fermilab** — postdoc, check for AI/ML/theory openings
-- **OpenAI Researcher, Alignment** — strong secondary, high material reuse
-- **Stanford ENIGMA / Sophia Sanborn** — postponed for now. Cold email when stronger Python/blog presence. Geometric/topological interp overlaps well.
-- **Geometric Intelligence Lab (UCSB)** — postponed. Strategy: write toy model + blog on sloppy models / log-spaced attention eigenvalues (possibly leveraging SAEs or CLTs), then reach out. Separate from PyTorch induction head project. gi.ece.ucsb.edu/join-lab.
-- **CAIS Research Scientist** — apply after PyTorch project (Python gap is main concern). safe.ai/careers, rolling.
-- **IBM Goldstine Fellowship** — flag in fall 2026. Deadline Dec 31, 2026. Math of AI focus, partial fit. gpfellow@ibm.com, academicjobsonline.org.
-- **✅ Constellation Astra Fellowship** — submitted 2026-05-04 (AoE). Empirical stream, Owain Evans mentor pitch. Also eligible for Visiting Fellowship.
-- **FAR.AI Research Scientist** — strong fit (mech interp explicit, SAE critique angle). Apply after PyTorch project — 72-min coding assessment in process.
-- **UK AISI Research Engineer/Scientist – Model Transparency** — London, due **2026-05-24**. Salary £65–145K + 28.97% pension. Strong fit: mech interp, model auditing. Python/PyTorch gap is a concern for RE track; RS track more viable. URL: https://job-boards.eu.greenhouse.io/aisi/jobs/4848454101
-- **Blue Dot Technical AI Safety Project Sprint** — due **2026-05-10**. 30hrs, work with AI safety expert, publish blog post. Prioritizes Blue Dot course grads (you'll be one). Rapid Grants available for compute. https://bluedot.org/courses/technical-ai-safety-project
-- **MATS Scholar** — apply at matsprogram.org/apply. Rolling.
-- **ARC (Alignment Research Center)** — visiting researcher positions, 10 weeks flexible. Check alignment.org/hiring for current openings.
-- **LawZero** — AI Safety Research Scientist (ML focus), Montreal, non-profit, Scientist AI agenda. PyTorch required. https://job-boards.greenhouse.io/lawzero/jobs/4008813009
-- **Timaeus Research Scientist (Theorist track)** — developmental interp, remote-first. **Deadline: May 3 — MISSED.** Check if rolling. £80–200K. https://timaeus.co/blog/updates/2026-04-09-hiring
-- **Timaeus Research Fellows Program** — affiliate fellowship for experienced researchers, remote-first. Rolling deadline. Flexible time commitment, 1yr min. Strong fit: mech interp, learning theory. https://timaeus.co/blog/updates/2026-04-09-fellows
-- **ARENA (Alignment Research Engineer Accelerator)** — 4-5 week intensive bootcamp, London (LISA). ARENA 8.0 closed (May 25–Jun 26). Submit EOI for future rounds. Requires strong Python — note for when coding skills improve. https://www.arena.education/
-- **BlueDot Career Transition Grant** — full-time AI safety funding, no public deadline/amount. Eligible as BlueDot course participant. Requires 1-2 page proposal. Apply after completing course. https://bluedot.org/programs/career-transition-grant
-- **PIBBSS × Iliad Residency** — CLOSED for 2026. EOI for future cohorts. https://princint.ai/programs/residency/
-- **Coefficient Giving Technical AI Safety RFP** — $100K–$1M, rolling. Strong fit for independent mech interp research proposal. https://coefficientgiving.org/funds/navigating-transformative-ai/request-for-proposals-technical-ai-safety-research/
-- **LTFF (Long-Term Future Fund)** — rolling, no deadline. $20K–$80K for 3–12 month independent research. Also Upskilling Grants $5K–$50K. https://funds.effectivealtruism.org/funds/far-future
-- **SFF (Survival and Flourishing Fund)** — 2026 round closed. Watch for next round. https://survivalandflourishing.fund/
-- **PIBBSS Fellowship** — EOI only (2026 closed, EOI for 2027). 3-month interdisciplinary fellowship, London, $4K/month + $1K housing. Strong fit: physics/complex systems background. https://princint.ai/programs/fellowship/
-- **ERA:AI Fellowship (Cambridge)** — EOI only (Summer 2026 closed). 10-week research fellowship, Cambridge UK, £34K prorated + housing + meals. Talent-first, no formal credentials required. https://erafellowship.org/fellowship
-- **✅ Pivotal Research Fellowship** — submitted 2026-05-03. 9-week, London (LISA). £6–8K stipend + £2K housing + meals.
-- **ARBOx4 (Oxford AI Safety Initiative)** — 2-week intensive bootcamp, Oxford, June 28–July 10. Free, housing+meals provided. Technical stream: mech interp, alignment. **Deadline: May 8.** https://oaisi.org/arbox-4
-- **London Institute for Safe AI** — membership application, low priority, no deadline. https://airtable.com/appjWv2IVtAvZ0MtD/pagPHOmSov1EIZ91H/form
-- **Perplexity, Salesforce**: pending
-- **Anthropic RS**: REJECTED 2026-03-19. Reapply ~early 2027.
-- **Canonical tracker**: `notebooks/other_jobs/job_search_summary_march2026_new_new.md`
+### Applications *(canonical tracker: `notebooks/other_jobs/job_search_summary_march2026_new_new.md`)*
+- ✅ **Submitted/applied**: OpenAI Interp (3/25), NVIDIA GenAI (3/31), Meta FAIR postdoc (6/1; prescreen 6/11), PrincInt RS (6/22; **screening call invited 6/29**), St. Ignatius HS teaching (5/21).
+- 🟢 **Active**: 🟡 ARC stream (6/30: Jacob granted conditional extension — submit 7/15 best-efforts, decision due to MATS 7/22, process = test+interview+onsite. Per Peter, worst case ARC just drops out & other streams unharmed. **Decision pending** — low-stakes now: it's #3, he's burnt out, gut leans skip); **⛰️ Fall residency fork — pick ONE (see Current Work): Singapore AISF (apply 7/10), ARENA 9.0 (apply 7/12), Iliad (apply 7/27)**; BlueDot Project Sprint (7/5); NYU/Polymathic (rolling, HIGH). 🟡 **Undecided/maybe-skip**: Notre Dame Faith & AI (7/1, not started); Hostačov AI-safety co-living residency near Prague (July 1–22 or Jul 27–Aug 10, **~€30–60/day = a cost not income** → tension w/ bridge-income & bar-work plan; upside = networking + philosophy vibe; `hostacov.notion.site/first-summer`).
+- ❌ **Rejected**: Anthropic RS Interp (3/19, reapply ~2027), OpenAI Early Career (not selected), LASR (5/21), Pivotal (6/4), Anthropic Fellows (6/11; July cohort — rejection email is generic/no personalized feedback, "what stands out" = exceptional research/eng + demonstrated AI-safety engagement; recommends Rohin Shah impactful-research talk + Carlini research-prioritization post + 80k job board → review at some point), Constellation Astra (6/11), BCG X AISI (missed).
+- ⏸ **Dropped/postponed**: OpenAI Alignment, UK AISI Transparency (5/26); Stanford ENIGMA/Sanborn, Geometric Intelligence Lab UCSB, CAIS, FAR.AI (after PyTorch/blog).
+- 📋 **Later/EOI**: Argonne, Fermilab, IBM Goldstine (Dec 2026), LawZero, Timaeus RS/Fellows, PIBBSS, ERA:AI, London Inst Safe AI, Perplexity, Salesforce; W. Jeffrey Johnston / UCSF (queue #4, cold-email). *(ARENA promoted to Active — see above.)*
+- 💰 **Funding (rolling)**: Coefficient Giving RFP ($100K-1M); **Coefficient Giving Career Dev & Transition Funding (queue #2, = bridge-income angle)**; LTFF ($20-80K), SFF (closed—watch), BlueDot Career Transition Grant.
 
 ### Blog Posts
-- **Post 1**: `_posts/2026-02-17-why-softmax.md` — LIVE
-- **Post 2**: `_posts/2026-02-24-attention-diagnostics.md` — LIVE
-  - **TODO**: causal verification of L8H1/L8H11 via activation patching (flagged as novel unlabeled heads)
-- **Post 3**: experiments DONE (out_mag > Var_v 30x ratio p=1.2e-5, contrastive ICA 7/8 heads, C_diff graph). Post not written. See [post3-plan.md](post3-plan.md).
-  - **Open questions before writing**: (1) do ICA components match Wang et al. causal sub-circuits? (2) C_diff vs contrastive ICA — both in post or just ICA? (3) cite cICA paper (PNAS 2025) as related work
-- **Post 4**: W_QK = G + B decomposition direction (2026-03-18). Experiments 1–4 done in `notebooks/post4_qk_metric/scratch/`. See [idea_qk_metric.md](idea_qk_metric.md).
+- Post 1 (why-softmax) + Post 2 (attention-diagnostics) **LIVE**.
+- Post 2.1 (IOI candidate-heads patching) DRAFT skeleton — `notebooks/post2.1_candidate-heads-patching/`.
+- Post 3: experiments DONE (out_mag>Var_v 30x p=1.2e-5, cICA 7/8, C_diff), unwritten ([post3-plan.md]).
+- Post 4: W_QK=G+B, exps 1-4 in `notebooks/post4_qk_metric/scratch/` ([idea_qk_metric.md]).
 
 ### Active Threads
-- **SAE comparison**: needs `conda create -n py311 python=3.11 && pip install transformer-lens sae-lens`. Use `jbloom/GPT2-Small-SAEs-Reformatted`. Hypothesis: B compute modes invisible to CLT/SAE.
-- **Blog idea**: W_QK sym/anti ratio as head-type discriminator (no precedent found)
-- **Blog idea**: tensor notation for Elhage 2021 — needs privileged basis argument airtight before writing
-- **Personal**: build small LLM from scratch in PyTorch; Julia is primary language, PyTorch fluency is a gap
-- **Site TODO**: Priority 2 next (MathJax stability, repo hygiene). Full list: [site-todo.md](site-todo.md).
-- **Lit review TODOs**: 7 pending searches in [lit-review.md](lit-review.md) (functional connectivity + transformer, spectral clustering on head stats, Kim 2026 citation graph, entropic OT equivalence, etc.)
+- SAE comparison: py311 env + `jbloom/GPT2-Small-SAEs-Reformatted`; hypothesis = B compute modes invisible to SAE/CLT.
+- Blog ideas: W_QK sym/anti ratio as head-type discriminator; tensor notation for Elhage 2021.
+- PyTorch still a gap (Julia primary); induction-head project dropped for compressed-computation.
+- Site TODO: MathJax stability, repo hygiene ([site-todo.md]). Lit review: 7 pending searches ([lit-review.md]).
 
 ---
 
 ## Context
-- Jekyll blog (Minimal Mistakes, sunset skin, MathJax) — peter-fields.github.io
-- **Two remotes**: `origin` = public GitHub Pages; `private` = private backup
-- **Two branches**: `backup` (default, has notebooks); `main` (stripped, public). Always work on `backup`. Publish with `./push-site.sh`. See [dev-setup.md](dev-setup.md).
+- Jekyll blog (Minimal Mistakes, sunset, MathJax) — peter-fields.github.io. Remotes: `origin`=public Pages, `private`=backup. Branches: `backup` (default, notebooks) vs `main` (stripped public). Work on `backup`, publish `./push-site.sh` ([dev-setup.md]).
+- Python: TransformerLens + numpy/matplotlib in conda base `/opt/miniconda3/bin/python`.
+- Peter calls the assistant "CC" (fine to use) ([user_calls_me_cc.md]).
+- **Elhage bug**: correct row form is A=softmax(x W_QK x^T) (not column). Post front matter: `layout: single, toc: true, toc_sticky: true, mathjax: true`; `$$..$$` display, `\\(..\\)` inline; local preview `jserve`.
 
-## Reference
-- [user_profile.md](user_profile.md) — Peter's background, Python gaps, working style
-- [lit-review.md](lit-review.md) — novelty claims, related work, citations
-- [circuit-discovery-theory.md](circuit-discovery-theory.md) — circularity problem, ICA
-- [posts-arc.md](posts-arc.md) — full post arc details
-- [anthropic-application.md](anthropic-application.md) — RS Interpretability application (rejected March 2026); final pass checklist
-- [anthropic-fellows-app.md](anthropic-fellows-app.md) — Fellows Program (July 2026) submitted essays, framing decisions, interview prep, status
-- [lasr-app.md](lasr-app.md) — LASR Labs Summer 2026 submitted answers, assessment status
-- [bluedot-app.md](bluedot-app.md) — Blue Dot Technical AI Safety Course application, **submitted 2026-04-26**. Intensive: 4–9 May 2026.
-- [pivotal-app.md](pivotal-app.md) — Pivotal Research Fellowship application, submitted 2026-05-03. CV bullets, risk ranking, mentor responses (Stefan Heimersheim, Logan & Thomas), privileged bases answer, ambitious goal.
-- [stefan-work-test-brief.md](stefan-work-test-brief.md) — Quick-ref brief for the 2h Stefan/Pivotal work test (due Mon 2026-05-18 6:59 AM CDT). Task constraints, red-team checklist, what Claude should/shouldn't do. **Reload at start of work-test session.**
-- [astra-app.md](astra-app.md) — Constellation Astra Fellowship application, submitted 2026-05-04 (within AoE window). Empirical stream. Three directions: prompt-contrast, Bauer-Bialek superposition, W_QK implicit metric. Mentor: Owain Evans.
-- [python-practice-plan.md](python-practice-plan.md) — Daily morning coding practice plan: numpy/pandas + four-week interview prep in parallel, then AI from scratch, then PyTorch
-- [resume-general.md](resume-general.md) — General-purpose resume: finalized bullets, skills, pending items; canonical files in `notebooks/other_jobs/general_resumes/`
-- [research_ideas.md](research_ideas.md) — all ideas, backburner, pointers to detail files
-- [idea_qk_metric.md](idea_qk_metric.md) — W_QK = G + B, experiments 1–4 results
-- [idea_alternating_attention.md](idea_alternating_attention.md)
-- **Canonical notation**: `notebooks/tensor_notation/tensor_notation_settled.md`
-
-## Quick Reference
-- **Python env**: TransformerLens + numpy/matplotlib in **conda base** `/opt/miniconda3/bin/python`
-- **Elhage bug**: A=softmax(x^T W_QK x) uses column convention; correct row form: A=softmax(x W_QK x^T)
-- **Post front matter**: `layout: single`, `toc: true`, `toc_sticky: true`, `mathjax: true`; `$$...$$` display, `\\(...\\)` inline. Local preview: `jserve`
-- See [writing-workflow.md](writing-workflow.md), [dev-setup.md](dev-setup.md) for full details
+## Reference (topic files)
+- **🗺️ WHERE EVERYTHING LIVES (apps, proposals, resumes, projects, paper, blog + gaps): [index-apps-and-projects.md]** — check first when locating any app essay or project file.
+- Profile/identity: [user_profile.md], [user_profile_faith_philosophy.md] (Catholic faith, anti-rationalist stance, symbol-grounding project), [feedback_intuition_style.md] (intuition-led working style), [substack-physicist-catholicism.md].
+- Research: [research_ideas.md], [idea_qk_metric.md] (W_QK=G+B), [idea_alternating_attention.md], [compressed-computation-project.md], [circuit-discovery-theory.md], [posts-arc.md], [lit-review.md], [prr-paper-revision.md], [temp-tune-publish-workflow.md] (squash-merge PRs → sepalmer/temp-tune public main).
+- MATS R2: [mats-round2-streams.md], [mats-sharkey-proposal-notes.md] (final Sharkey draft saved), [mats-openai-proposal-notes.md].
+- Apps: [princint-app.md], [anthropic-fellows-app.md], [anthropic-application.md], [lasr-app.md], [bluedot-app.md], [pivotal-app.md], [astra-app.md], [stefan-work-test-brief.md], [resume-general.md].
+- Practice/workflow: [python-practice-plan.md], [debug_future_practice.md], [writing-workflow.md], [dev-setup.md], [site-todo.md]. Notation: `notebooks/tensor_notation/tensor_notation_settled.md`.

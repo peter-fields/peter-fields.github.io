@@ -1,7 +1,10 @@
 ---
 name: idea_qk_metric
 description: Research idea — W_QK = G + B decomposition; shared content-matching metric and directed-routing 2-form across heads; content/compute subspace split
-type: project
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 3ac71653-2ed5-495b-8df3-628fd3bd1784
 ---
 
 ## W_QK = G (metric) + B (2-form): Shared Geometry of Attention Heads
@@ -611,3 +614,20 @@ If all three converge without being forced by the loss → evidence the shared G
 6. **IOI experiments**: G/B ratio per head, W_E mass check, S_G name clustering, B positional regression on S-inhibition heads. All runnable on GPT-2 small with existing machinery.
 7. **Rate-distortion term**: add Gaussian-approximation noisy channel term to L to partially close the softmax gap. SNR = top B singular value × G^{l+1} @ W_OV^l recovery quality. Tractable weight-only approximation.
 8. **Type-supervised shared G+B for IOI**: average G^h within name mover heads, B^h within S-inhibition heads. Check if type-averaged G and B are more interpretable than G_crude.
+
+---
+
+## Routing-Dictionary Project + Framing Crystallized (2026-06-23 session)
+
+Refined, Peter-endorsed evolution of the tabled Post 4 work; he's enthusiastic and would pursue it independently (blog / Post 4 completion) even if MATS Sharkey doesn't bite. App-specific version with the full 300-word proposal: [[mats-sharkey-proposal-notes]].
+
+**The project (concrete, low-risk, result either way):** recover a shared *dictionary* of routing (B) and metric (G) atoms that every head's W_QK expands in — W_QK^h = sum_k c_k^h M_k, shared atoms M_k, head-specific coefficients c.
+- **Method (robust, do FIRST):** PCA over the stack of per-head B matrices (and G separately). Flatten each B^h into a row of X. Equivalently eigendecompose the 144×144 head-head Frobenius-Gram matrix (entry <B^h,B^h'>_F; normalize each B^h to unit Frobenius norm first to compare shape not magnitude). SVD duality: Gram eigenvalues = squared singular values (the spectrum answers "does a small shared basis exist?"); Gram eigenvectors u_k = coefficient-over-head patterns; atoms recovered by back-projection M_k = (1/s_k) sum_h u_k[h] B^h. This is the eigenfaces / kernel-PCA trick (feature dim D >> #heads H). **Sloppiness is the desired signal here, NOT a numerical problem** — only JAD and metric-inversion suffer from sloppy spectra; forward SVD is stable.
+- **Validate on IOI** (GPT-2 small, Wang et al. labels): do coefficient vectors cluster by head type (name movers vs S-inhibition)? Warm-up sanity check = single scalar r_h = ||B_h||_F/||W_QK,h||_F (antisymmetry ratio) vs head type.
+- **APD/MDL bridge:** redo as *sparse* dictionary learning (few atoms per head = short description). New confirmatory experiment: is B's top routing subspace orthogonal to a residual-stream SAE feature dictionary (jbloom/GPT2-Small-SAEs-Reformatted) vs a random-direction baseline? Direct test of the SDL-blindness thesis (cf. exp7 fix in Open Questions #2).
+
+**Framings that locked in this session:**
+- **Lead = the non-Euclidean blind spot:** the field treats the residual stream as Euclidean (cosine, PCA, persona vectors, activation plateaus), but the model never uses that inner product — attention similarity is x_i^T W_QK x_j, a learned bilinear form; G is the learned metric. Gauge point: cosine/PCA/L2 are not GL(d)-invariant, so they can be coordinate artifacts; only properly-contracted tensors (G, B) survive. Honest caveat: LayerNorm + unembedding inject *some* Euclidean structure, so the geometry is operation-dependent, not one intrinsic metric.
+- **Addressing vs payload (tensor types):** W_QK is type (0,2) = the geometry (metric G + 2-form B); W_OV is (1,1) = the transformation. **Only (1,1) tensors compose**, so computation lives in OV maps and geometry in the QK form. "B routes, G measures." Resolves "if B is content-orthogonal, how is content moved?" → content is moved by OV (in content space), NOT by QK; B routes via structural/compute directions (position, syntactic role). Induction heads = clean example.
+- **Composition = pullback:** Elhage K/Q-composition is exactly the pullback W_OV^(1)T W_QK^(2) W_OV^(1) of the next head's bilinear form through this head's OV map. Peter's 0.68-vs-0.17 result (B predicts K-comp far better than G) says **B is the part transmitted under composition**. Back-pocket: is each head's OV a G-isometry (W_OV^T G W_OV = G) or does it deform the geometry? (caveat: W_OV is low-rank/projection; G is global vs OV per-head.)
+- **Verified numbers (`scratch/verify_B_we_mass.py`, 2026-06-23):** B top routing modes' W_E 90%-var projection mass — attn-only-2l modes 1-4 = 0.0026, 0.0016, 0.026, 0.056; GPT-2 small modes 1-2 = 0.067, 0.053 (mode 3 already 0.28). Mean over ALL B modes = the random-chance baseline (subspace_dim/d_model: 511/768=0.665 gpt2; 360/512=0.703 2l). So only the DOMINANT modes are below chance — defensible claim is "B's dominant routing modes are far more orthogonal to the embedding subspace than chance," NOT "B avoids it wholesale." Say "right singular vectors of W_E," not "eigenvectors of the (non-square) embedding matrix."

@@ -1,0 +1,31 @@
+Input DNA: 288 nt
+
+Six-frame translation (stop codons per frame):
+  frame +1:  0 stop(s), longest ORF =  96 aa
+  frame +2:  3 stop(s), longest ORF =   0 aa
+  frame +3: 10 stop(s), longest ORF =   0 aa
+  frame -1:  0 stop(s), longest ORF =  96 aa
+  frame -2:  3 stop(s), longest ORF =  30 aa
+  frame -3: 23 stop(s), longest ORF =   0 aa
+
+ORF candidates (one per strand):
+
+  [+1] 96 aa
+    MNQHNTQINKFIFFSSFRIISTTPIQFINNNRTSNSNSNIFIIRSRRIQNNTNSFFIISS
+    IPSFTNSTIRITFFTITSMQIINTRIFMRSNMNQTH
+
+  [-1] 96 aa
+    MGLVHIRSHKNSGIDNLHAGDCEKGNSNGAVCKTWNTADNKKAVGIVLNSPASNDEYVAI
+    AVAGPIIVDKLNWGGTDDSEATKKDKFIDLGIMLIH
+
+================================================================================
+BLAST candidate from frame +1 (96 aa)
+
+Submitting blastp to NCBI against 'nr' (this can take a few minutes)...
+No hits returned.
+
+================================================================================
+BLAST candidate from frame -1 (96 aa)
+
+Submitting blastp to NCBI against 'nr' (this can take a few minutes)...
+No hits returned.

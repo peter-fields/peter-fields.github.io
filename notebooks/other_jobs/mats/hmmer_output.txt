@@ -1,0 +1,33 @@
+
+### hmmscan (hmmdb=pfam) on candidate +1 (96 aa)
+  status=405  final_url=https://www.ebi.ac.uk/Tools/hmmer/search/hmmscan  ctype=text/html
+  body[:300]: <html>
+<head><title>405 Not Allowed</title></head>
+<body>
+<center><h1>405 Not Allowed</h1></center>
+<hr><center>nginx/1.31.1</center>
+</body>
+</html>
+
+
+### hmmscan (hmmdb=pfam) on candidate -1 (96 aa)
+  status=405  final_url=https://www.ebi.ac.uk/Tools/hmmer/search/hmmscan  ctype=text/html
+  body[:300]: <html>
+<head><title>405 Not Allowed</title></head>
+<body>
+<center><h1>405 Not Allowed</h1></center>
+<hr><center>nginx/1.31.1</center>
+</body>
+</html>
+
+
+### phmmer (seqdb=swissprot) on candidate -1 (96 aa)
+  status=405  final_url=https://www.ebi.ac.uk/Tools/hmmer/search/phmmer  ctype=text/html
+  body[:300]: <html>
+<head><title>405 Not Allowed</title></head>
+<body>
+<center><h1>405 Not Allowed</h1></center>
+<hr><center>nginx/1.31.1</center>
+</body>
+</html>
+

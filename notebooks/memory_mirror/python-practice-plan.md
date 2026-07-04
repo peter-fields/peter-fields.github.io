@@ -9,9 +9,14 @@ originSessionId: 14f8c394-1e56-45de-997d-4ff4de657c44
 **Goal:** Stop bombing round 2 coding assessments. Key targets: Anthropic Fellows assessment (arriving late April–May 11), FAR.AI 72-min assessment, future LASR-style tests.
 
 **Diagnosed gaps:**
-- Numpy shape/vectorization fluency (hit a shape mismatch bug on LASR gradient descent)
+- Numpy shape/vectorization fluency (hit a shape mismatch bug on LASR gradient descent, 2026-04-22)
 - Algorithmic thinking under pressure — brain shutdown on timed tests (hit on sliding window / local maxima type problem)
 - General Python automaticity
+- **Tree recursion debugging** (Anthropic Fellows debug assessment, 2026-05-21 — 2/6 bugs found; got stuck on decision-tree max-recursion bug)
+- **pdb fluency** — used print statements on the debug test; pdb is faster but requires hours of real use to become reflexive
+- **Reading unfamiliar code under time pressure** — large unfamiliar codebases with one specific bug to find
+
+**Practice notes file:** [notebooks/practice/debug_future_practice.md](../../Git/peter-fields.github.io/notebooks/practice/debug_future_practice.md) — sections on recursion patterns to drill, pdb commands beyond basics, ML algorithms from scratch, weekly cadence.
 
 ## The Plan
 

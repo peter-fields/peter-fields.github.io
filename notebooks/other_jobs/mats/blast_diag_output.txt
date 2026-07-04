@@ -1,0 +1,26 @@
+blastp -1 candidate vs nr, expect=2000, low-complexity filter OFF ...
+alignments returned: 24
+  E=  2.2e+02  id= 27%  qcov= 70%  carboxypeptidase regulatory-like domain-containing protein [Terri
+  E=  2.7e+02  id= 36%  qcov= 46%  helix-turn-helix domain-containing protein [Pseudomonas sp. PDM15
+  E=  2.8e+02  id= 36%  qcov= 46%  helix-turn-helix domain-containing protein [Pseudomonas sp. F(201
+  E=  2.8e+02  id= 28%  qcov= 58%  hypothetical protein [Verrucomicrobiales bacterium]
+  E=  2.9e+02  id= 57%  qcov= 24%  DUF924 family protein [Rhodospirillaceae bacterium] >gb|MBT349092
+  E=  3.4e+02  id= 57%  qcov= 24%  DUF924 family protein [Alphaproteobacteria bacterium] >gb|MDP6254
+  E=  3.4e+02  id= 57%  qcov= 24%  DUF924 family protein [Alphaproteobacteria bacterium]
+  E=  3.4e+02  id= 40%  qcov= 36%  bifunctional phosphopantothenoylcysteine decarboxylase/phosphopan
+  E=  4.2e+02  id= 40%  qcov= 42%  glycosyltransferase family 4 protein [Levilactobacillus brevis]
+  E=  5.2e+02  id= 27%  qcov= 73%  unnamed protein product, partial [Brenthis ino]
+  E=  5.7e+02  id= 41%  qcov= 46%  outer membrane beta-barrel protein [Vicinamibacterales bacterium]
+  E=  5.7e+02  id= 31%  qcov= 60%  lysozyme c-1-like isoform X4 [Ruditapes philippinarum]
+  E=  6.9e+02  id= 34%  qcov= 52%  glycogen debranching enzyme N-terminal domain-containing protein 
+  E=  7.0e+02  id= 34%  qcov= 52%  glycogen debranching enzyme N-terminal domain-containing protein 
+  E=  7.9e+02  id= 33%  qcov= 70%  response regulator [Draconibacterium sp.]
+  E=  8.5e+02  id= 36%  qcov= 44%  type II 3-dehydroquinate dehydratase [Bradyrhizobium cenepequi] >
+  E=  8.6e+02  id= 36%  qcov= 57%  CARDB domain-containing protein [Limimaricola sp.] >gb|MBI1417908
+  E=  1.3e+03  id= 29%  qcov= 59%  MULTISPECIES: diflavin flavoprotein [unclassified Anabaena] >gb|M
+  E=  1.5e+03  id= 33%  qcov= 44%  type II 3-dehydroquinate dehydratase [Bradyrhizobium septentriona
+  E=  1.6e+03  id= 34%  qcov= 52%  c-type cytochrome [Arenicella sp. 4NH20-0111] >dbj|GAA6137621.1| 
+  E=  1.7e+03  id= 31%  qcov= 59%  hydratase [Herbinix luporum] >gb|MDI9489189.1| hydratase [Bacillo
+  E=  1.8e+03  id= 41%  qcov= 41%  beta/alpha barrel domain-containing protein [Mobilibacterium timo
+  E=  1.9e+03  id= 41%  qcov= 41%  hydrolase [Mobilibacterium timonense]
+  E=  1.9e+03  id= 31%  qcov= 59%  hydratase, partial [Herbinix luporum]

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd ~/Git/temp-tune && jupyter nbconvert --to notebook --execute --inplace notebooks/histogram_overlap.ipynb:*)",
+      "Bash(python3 /tmp/build_histogram_overlap_nb.py)",
+      "Bash(python3 /tmp/inspect_histogram_overlap.py)"
+    ]
+  }
+}

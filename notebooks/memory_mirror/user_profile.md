@@ -29,3 +29,23 @@ originSessionId: f1b97da7-2faf-4258-8092-c796d88b1498
 - Concise responses preferred; doesn't need hand-holding on theory
 - Will say "hang on" or "i wasnt done" if the assistant jumps ahead — respect that
 - Dislikes unnecessary acronyms — spell things out
+
+## Career strategy (as of 2026-06-17)
+
+**Primary direction: academic positions + steady Python improvement.**
+
+Rationale: the industry AI-safety pipeline keeps gating on timed coding tests that don't favor Peter's strengths. Recent rejections (Anthropic Fellows, Astra, Pivotal, LASR — all in late May / early June 2026) clustered around CodeSignal-style assessments. Peter's strengths (physics PhD, stat mech, theory-forward research, original philosophical work) translate cleanly into academic and research-scientist settings where the hiring signal is research talks, written work, and references — not 90-minute coding tests.
+
+**What to prioritize when suggesting opportunities or framing applications:**
+- Academic postdocs (NYU/Polymathic, Notre Dame Faith and AI, Argonne, Fermilab, IBM Goldstine)
+- Research-scientist roles at orgs with academic-style hiring (PrincInt, Timaeus Fellows, Geometric Intelligence Lab)
+- Independent funding for self-directed research (LTFF, Coefficient Giving, BlueDot Career Transition Grant)
+
+**Still in flight from prior strategy** (don't drop these, just don't prioritize new industry adds):
+- MATS Round 2 (advanced 2026-06-11)
+- Meta FAIR Postdoc (prescreen submitted 2026-06-11)
+- Anthropic RS reapplication (~early 2027)
+
+**Python:** continuing on existing daily plan ([python-practice-plan.md](python-practice-plan.md)) — CodeSignal "AI Algorithms from Scratch" + "Four-Week Interview Prep" + recursion / pdb deliberate practice. Slow burn, no shortcut, but the deficit is being worked down so future timed tests go better.
+
+**Practical guidance for me:** when surfacing new opportunities, default to filtering for "no coding test required" or "coding test is incidental, not gating." Reserve industry-pipeline suggestions for moments when Peter explicitly asks.

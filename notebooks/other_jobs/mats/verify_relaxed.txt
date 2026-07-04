@@ -1,0 +1,61 @@
+Input DNA: 288 nt
+
+Six-frame translation (stop codons per frame):
+  frame +1:  0 stop(s), longest ORF =  96 aa
+  frame +2:  3 stop(s), longest ORF =   0 aa
+  frame +3: 10 stop(s), longest ORF =   0 aa
+  frame -1:  0 stop(s), longest ORF =  96 aa
+  frame -2:  3 stop(s), longest ORF =  30 aa
+  frame -3: 23 stop(s), longest ORF =   0 aa
+
+ORF candidates (one per strand):
+
+  [+1] 96 aa
+    MNQHNTQINKFIFFSSFRIISTTPIQFINNNRTSNSNSNIFIIRSRRIQNNTNSFFIISS
+    IPSFTNSTIRITFFTITSMQIINTRIFMRSNMNQTH
+
+  [-1] 96 aa
+    MGLVHIRSHKNSGIDNLHAGDCEKGNSNGAVCKTWNTADNKKAVGIVLNSPASNDEYVAI
+    AVAGPIIVDKLNWGGTDDSEATKKDKFIDLGIMLIH
+
+================================================================================
+BLAST candidate from frame +1 (96 aa)
+
+blastp vs nr, expect=2000, low-complexity filter OFF (this can take a few minutes)...
+alignments returned: 2
+   E-value    %id   qcov  description
+--------------------------------------------------------------------------------
+   3.3e+02     29     82  hypothetical protein [Syntrophorhabdaceae bacterium]
+   5.9e+02     32     68  hypothetical protein [Ginsengibacter sp.]
+
+================================================================================
+BLAST candidate from frame -1 (96 aa)
+
+blastp vs nr, expect=2000, low-complexity filter OFF (this can take a few minutes)...
+alignments returned: 24
+   E-value    %id   qcov  description
+--------------------------------------------------------------------------------
+   2.2e+02     27     70  carboxypeptidase regulatory-like domain-containing protein [
+   2.7e+02     36     46  helix-turn-helix domain-containing protein [Pseudomonas sp. 
+   2.8e+02     36     46  helix-turn-helix domain-containing protein [Pseudomonas sp. 
+   2.8e+02     28     58  hypothetical protein [Verrucomicrobiales bacterium]
+   2.9e+02     57     24  DUF924 family protein [Rhodospirillaceae bacterium] 
+   3.4e+02     57     24  DUF924 family protein [Alphaproteobacteria bacterium] 
+   3.4e+02     57     24  DUF924 family protein [Alphaproteobacteria bacterium]
+   3.4e+02     40     36  bifunctional phosphopantothenoylcysteine decarboxylase/phosp
+   4.2e+02     40     42  glycosyltransferase family 4 protein [Levilactobacillus brev
+   5.2e+02     27     73  unnamed protein product, partial [Brenthis ino]
+   5.7e+02     41     46  outer membrane beta-barrel protein [Vicinamibacterales bacte
+   5.7e+02     31     60  lysozyme c-1-like isoform X4 [Ruditapes philippinarum]
+   6.9e+02     34     52  glycogen debranching enzyme N-terminal domain-containing pro
+   7.0e+02     34     52  glycogen debranching enzyme N-terminal domain-containing pro
+   7.9e+02     33     70  response regulator [Draconibacterium sp.]
+   8.5e+02     36     44  type II 3-dehydroquinate dehydratase [Bradyrhizobium cenepeq
+   8.6e+02     36     57  CARDB domain-containing protein [Limimaricola sp.] 
+   1.3e+03     29     59  MULTISPECIES: diflavin flavoprotein [unclassified Anabaena] 
+   1.5e+03     33     44  type II 3-dehydroquinate dehydratase [Bradyrhizobium septent
+   1.6e+03     34     52  c-type cytochrome [Arenicella sp. 4NH20-0111] 
+   1.7e+03     31     59  hydratase [Herbinix luporum] 
+   1.8e+03     41     41  beta/alpha barrel domain-containing protein [Mobilibacterium
+   1.9e+03     41     41  hydrolase [Mobilibacterium timonense]
+   1.9e+03     31     59  hydratase, partial [Herbinix luporum]

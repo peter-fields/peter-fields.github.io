@@ -201,16 +201,18 @@ We went through THREE iterations of non-IOI control prompts. This is itself a ke
 - **Structural heads go the other way**: Induction within-role Δ = -0.098, Dup Token Δ = -0.284. They're MORE correlated on non-IOI (structural ops dominate when circuit is off), slightly LESS on IOI. Good sanity check.
 - **Backup NMs barely change**: Δ = +0.066 within-role. Consistent with being "backup" — they only fire intermittently.
 
-**Candidate unlabeled circuit components (L8H1, L8H11):**
+**Candidate unlabeled circuit components (L8H1, L8H11, L7H11):**
 - L8H1 ↔ L9H6 (NM): flips from r = +0.543 (non-IOI) to r = -0.731 (IOI). **Swing of -1.274.** Largest magnitude change of any head pair in the entire model.
 - L8H11 ↔ L9H6: +0.526 → -0.636 (Δ = -1.162)
 - L8H1 ↔ L9H9 (NM): +0.437 → -0.725 (Δ = -1.162)
+- L7H11 ↔ L9H6 (NM): +0.679 → -0.477 (Δ = -1.156). One layer earlier than L8H1/L8H11, same anti-correlation pattern.
 - L8H11 ↔ L9H9: +0.384 → -0.681 (Δ = -1.065)
-- Both L8H1 and L8H11 are layer 8 — directly before core NMs in layer 9.
-- On non-IOI, they're positively correlated with NMs (~+0.5). On IOI, they flip to strongly anti-correlated (~-0.7).
-- **These are not in the Wang et al. circuit labels.** Wang et al. used logit attribution (traces from the output backward) — if these heads don't directly affect the logit difference, they'd be invisible to that approach.
-- **Hypothesis**: L8H1 and L8H11 are performing some kind of competition or suppression that opposes Name Movers specifically when the IOI circuit fires. They could be part of the circuit's regulatory machinery.
-- **This needs causal verification** — activation patching on L8H1/L8H11 would test whether they're actually necessary for IOI performance. The KL correlation analysis can flag candidates but can't prove causal necessity.
+- L7H11 ↔ L9H9 (NM): +0.521 → -0.410 (Δ = -0.932)
+- L8H1, L8H11 in layer 8; L7H11 in layer 7 — all directly upstream of core NMs in layer 9.
+- On non-IOI, they're positively correlated with NMs (~+0.5 to +0.7). On IOI, they flip to strongly anti-correlated (~-0.4 to -0.7).
+- **None of these are in the Wang et al. circuit labels.** Wang et al. used logit attribution (traces from the output backward) — if these heads don't directly affect the logit difference, they'd be invisible to that approach.
+- **Hypothesis**: L7H11, L8H1, L8H11 are performing some kind of competition or suppression that opposes Name Movers specifically when the IOI circuit fires. They could be part of the circuit's regulatory machinery.
+- **This needs causal verification** — activation patching on L7H11/L8H1/L8H11 would test whether they're actually necessary for IOI performance. The KL correlation analysis can flag candidates but can't prove causal necessity.
 
 **Also interesting non-circuit heads with large positive swings (co-activate with NMs on IOI):**
 - L1H7 ↔ L9H9: -0.543 → +0.475 (Δ = +1.019). Very early layer, strongly recruited.
