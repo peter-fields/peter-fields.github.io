@@ -56,5 +56,29 @@ else
 fi
 
 # 7. Return to backup
-git checkout backup
+#    `git rm --cached notebooks/` (step 4) untracks those files on main but leaves
+#    them on disk. Switching back to backup — where they ARE tracked — then aborts
+#    with "untracked working tree files would be overwritten". Their on-disk content
+#    is identical to backup's (main never modifies them), so -f is safe here.
+#    Guard: only force if the sole differences are those notebooks paths.
+if ! git checkout backup 2>/dev/null; then
+    echo "==> Untracked notebooks files blocking checkout; verifying they match backup..."
+    MISMATCH=0
+    while IFS= read -r f; do
+        [ -f "$f" ] || continue
+        if [ "$(git hash-object "$f")" != "$(git rev-parse "backup:$f" 2>/dev/null)" ]; then
+            echo "    DIFFERS from backup: $f"
+            MISMATCH=$((MISMATCH + 1))
+        fi
+    done < <(git ls-tree -r --name-only backup -- notebooks/)
+
+    if [ "$MISMATCH" -eq 0 ]; then
+        git checkout -f backup
+        echo "==> Restored backup (forced; on-disk notebooks matched backup exactly)."
+    else
+        echo "==> ABORT: $MISMATCH notebooks file(s) on disk differ from backup."
+        echo "    Still on main. Inspect the files above, then run: git checkout -f backup"
+        exit 1
+    fi
+fi
 echo "==> Back on backup."
