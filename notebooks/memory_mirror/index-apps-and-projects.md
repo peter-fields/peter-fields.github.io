@@ -20,7 +20,7 @@ Navigational map only (pointers, not content). **When you start or submit an app
 Text lives in dedicated memory files and/or inline in the canonical tracker. Mac/Google-Docs-only ones are in GAPS below.
 - **Anthropic** (RS Interp + Fellows): [[anthropic-application]], [[anthropic-app-edits]], [[anthropic-fellows-app]]; repo `notebooks/anthropic_app/essays.md`.
 - **Constellation Astra**: [[astra-app]]; resume `notebooks/other_jobs/Fields_Peter_Resume_astra.pdf`.
-- **BlueDot** (course + July-5 Project Sprint): [[bluedot-app]] *(confirm it covers the Sprint, not just the course)*.
+- **BlueDot** (course + Project Sprint; **now IN course — Unit 1 project chosen 7/20 = sycophancy-vs-advice-quality eval; working notes in repo `notebooks/bluedot_sycophancy_evals/`**): [[bluedot-app]].
 - **LASR**: [[lasr-app]]; resume `...Resume_lasr.*`; CodeSignal prep `notebooks/other_jobs/lasr_practice/`.
 - **Pivotal / Stefan**: [[pivotal-app]], [[stefan-work-test-brief]]; repo `notebooks/stefan_work_test/`.
 - **PrincInt**: [[princint-app]].

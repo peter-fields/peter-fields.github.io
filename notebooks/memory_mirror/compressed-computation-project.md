@@ -10,6 +10,7 @@ metadata:
 # Compressed Computation Project — replaces PyTorch induction head project
 
 > 🔵 **STATUS 2026-06-24 — ON BACKBURNER.** Not off the ground yet; Peter is deprioritizing it for a while (applications + PRR took precedence). Notes below are the standing plan for when it resumes; nothing started.
+> 🟢 **UPDATE 2026-07-12 — fresh first-pass angle logged; Peter musing about picking it up during pre-Iliad downtime (no commitment).** The new front-runner entry point is **Direction 4 (rate–distortion / reverse water-filling recast)** below — sparked by his ARENA Q6 engagement with the Bhagat et al. paper. Cleaner + more concrete than Directions 1–3 for a first result. Still "work on what I enjoy" mode, not a scheduled task.
 
 **Decision date:** 2026-05-26
 
@@ -59,6 +60,23 @@ Key formalism (the "Hänni formalism" Peter is comfortable with):
 - **Output:** new diagnostic tool for circuit discovery via observation, no causal interventions
 
 **Likely path:** Start with Direction 1, then opportunistically add Direction 2 theory commentary, leave Direction 3 for a follow-up.
+
+## 🆕 Direction 4 — Rate–distortion recast (candidate first-pass, logged 2026-07-12)
+
+**Origin:** sparked by Peter's ARENA Q6 engagement with **Bhagat et al. "Compressed Computation is (probably) not Computation in Superposition"** (lesswrong ZxFchCFJFcgysYsT9; authors Jai Bhagat, Sara Molas Medina, Giorgi Giglemiani, supervised by StefanHex/Apollo). That paper shows the Braun et al. toy model (100 ReLUs, 50 neurons) is NOT CiS — the advantage comes from a mixing matrix M (= 1 − W_E W_Eᵀ) that correlates features; the trained MLP's neuron directions live in the **top-50 eigenvectors of M**, and the loss advantage scales with M's magnitude (∝ σ, vanishes at M=0). See [[arena-app]] Q6 for Peter's writeup + extension. This is the paper the whole project's "apparent-CiS may just be correlation-exploitation" thesis now hangs on.
+
+**The recast (Peter's brainstorm, CC endorsed as the cleanest lens):** an MLP with D neurons computing T>D outputs is a **lossy channel with a D-dim bottleneck → a rate–distortion problem** (source = target functions, rate ≈ D, distortion = MSE). For a linear-Gaussian source + squared error, the optimal encoder is textbook **reverse water-filling on the covariance eigenvalues** — spend D dims on the top-variance modes, drop the rest. The paper's "MLP lands in top-50 eigenvectors of M" **IS water-filling.** So compressed computation ≈ rate–distortion-optimal lossy compression of a correlated source, not computation.
+
+**Makes Peter's "effective # variables ≪ nominal" punchline precise:** that quantity = the **effective rank / participation ratio** of the eigenspectrum, PR = (Σλ_i)² / Σλ_i². If targets are correlated (spectrum decays), PR ≪ T; if PR < D, the MLP genuinely has enough room, no superposition needed. Feature splitting/absorption = spectrum decaying faster than atomistic-SAE counts assume.
+
+**Tiny self-contained first pass (mostly linear algebra, no training):**
+1. Split the toy target into the ReLU-task part (irreducible, doesn't compress) + the linear mixing part Mx (compressible).
+2. From M's eigenvalues, compute the **reverse-water-filling distortion at rate D** (closed form).
+3. Compare to the MLP's actual loss advantage as σ varies. If they track → quantitative evidence that CC = optimal lossy compression, not CiS. Publishable as a blog post.
+
+**Framing/narrative:** rate–distortion + participation ratio = the quantitative spine; **Bauer-Bialek "ambiguous individually, informative in aggregate" / channel-capacity** = the conceptual gloss (same story: how many near-orthogonal functions can D neurons carry at tolerable interference). Information bottleneck (Direction 2) is the heavier stochastic-encoder version — save it; rate–distortion is cleaner for a deterministic MLP + MSE first pass. **Heimersheim (intended audience) will immediately recognize the water-filling connection.** Ties the Bhagat paper + ARENA Q6 extension + this project into one line.
+
+**Open first question to test:** does water-filling distortion ≈ MLP loss actually hold on the toy model (across σ)? That's the go/no-go for the whole recast.
 
 ## Why this is good for the audience
 

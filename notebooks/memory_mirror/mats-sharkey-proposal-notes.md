@@ -23,7 +23,7 @@ Peter self-caught this while back in the form updating his mentor ranking (allow
 
 **Lesson (Peter's, worth keeping):** to cut length, delete from your own draft — don't ask AI to reword, and don't even *read* an AI rewrite (anchoring leaks its cadence in even when you retype). Always better to own up to a mistake (his grad-school rule).
 
-### ✅ CLEAN CANONICAL ORIGINAL (Peter's own words, longer — sent in the correction email)
+### CLEAN CANONICAL ORIGINAL = "ORIG" (Peter's own words, longer — attached to the correction email; NEVER the form-submitted version — confirmed by Peter 2026-07-09; the REAL SUBMITTED FINAL above is the form text)
 
 > Many current lines of research in LLMs consider the residual stream vector space as Euclidean (e.g. persona vectors [arXiv:2507.21509] or activation plateaus [lesswrong.com/posts/WMfSbt7AAcJdHzysB/activation-plateaus-where-and-how-they-emerge]). However, the model itself never uses that inner product to compare vectors in the residual stream. The geometry it actually uses is implicit in the bilinear forms learned by the QK matrices of each attention head.
 >
@@ -39,7 +39,19 @@ Peter self-caught this while back in the form updating his mentor ranking (allow
 
 ---
 
-## ✅ FINAL DRAFT (AI-CONDENSED — this is the version actually submitted to the form; see correction above)
+## ⭐️ REAL SUBMITTED FINAL (Peter's own words — CONFIRMED by Peter 2026-07-09; USE THIS for any c&p)
+
+**This is the actual text submitted to the Sharkey stream form** (after the AI-use correction: Peter resubmitted a clean, fully self-written version). Both blocks below this one (the "AI-CONDENSED FINAL DRAFT" and the earlier "CLEAN CANONICAL ORIGINAL") are NOT the submitted text — do not treat them as the source of truth. Note: this real final does NOT include the "check B's top modes orthogonal to SAE directions" sentence — that lives only in the canonical-original draft below (still Peter's own prose, just not submitted).
+
+> Many current lines of research in LLMs consider the residual stream vector space as Euclidean (e.g. persona vectors [arXiv:2507.21509] or activation plateaus [lesswrong.com/posts/WMfSbt7AAcJdHzysB/activation-plateaus-where-and-how-they-emerge]). However, the model never uses that inner product to compare residual stream vectors. The geometry it actually uses is implicit in the QK matrices of each attention head. Decomposing each W_QK matrix into a symmetric (G) and anti-symmetric part (B), we have W_QK = G + B. My current hypotheses are that (i) G represents a content-matching metric, and can define a geometry of activation space more robustly; (ii) B is direction-dependent, responsible for routing information (think, for example, of K-composition in induction heads), and acts on a "compute subspace."
+>
+> The main question I'd like to explore if accepted into this work stream: can each head's QK be decomposed as a sum over a shared (and interpretable) basis, that is, a sum over G and B terms, with each head having different coefficients? Methodologically, this would involve SVD over a stacked matrix of all heads' B matrices (and G separately). I'd also be interested in sparsity-constrained decompositions. I would validate this in GPT-2 small's IOI circuit: could finding a shared basis and per-head coefficients adequately distinguish head types? If only a few atoms of a global G and B are active per head, this would be a short description length.
+>
+> I have preliminary evidence from the attn-only-2l model (from TransformerLens) where a G-weighted token similarity matrix (W_E^T G W_E where W_E is the embedding matrix) ranks semantically similar tokens highly, indicative of content matching. In GPT-2 small, top eigenvectors of G (per head) tend to lie heavily in the W_E space, whereas B's top modes tend to have little overlap, strongly indicating that B operates in the "compute subspace." If behaviors like deception in other models utilize such a subspace, uncovering this mechanism would be a large step towards safe monitoring of AI systems.
+
+---
+
+## FINAL DRAFT (AI-CONDENSED — ⚠️ NOT the submitted version; superseded by REAL SUBMITTED FINAL above)
 
 Re-read this before any screening call. Extras list was deliberately OMITTED (optional field; chose focus over thin add-ons).
 

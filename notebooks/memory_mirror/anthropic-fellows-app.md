@@ -123,3 +123,21 @@ The essays work as a diptych:
 - **"Why Fellows"** = personal case: what my background brings, what I've already found, what I need
 
 Keep them non-redundant — technical content lives in "Excited area," trajectory/motivation lives in "Why Fellows."
+
+---
+
+## ⭐️ REFERENCES — reusable across apps (submitted verbatim to Anthropic Fellows 2026-03-30)
+
+Ready-made "reference background + how we worked together" blurbs. **⚠️ STALE LINE:** the Palmer relationship text below says "I currently work as a researcher for her" — TRUE as of March 2026 but Peter's contract **ended end of June 2026**, so for any app after that, drop/past-tense it (e.g. "I have worked with her since January 2021, most recently as a researcher in her lab"). See MEMORY.md Current Work / bridge-income.
+
+**Reference 1 — Stephanie Palmer** (stephanie.e.palmer@gmail.com)
+- *Background:* Associate Professor, Dept. of Physics & Dept. of Organismal Biology and Anatomy, University of Chicago. Google Scholar: https://scholar.google.com/citations?user=0gtvj54AAAAJ&hl — Recently named a Schmidt Science Polymath: https://www.schmidtsciences.org/six-professors-named-schmidt-science-polymaths/
+- *Relationship:* Stephanie was my PhD advisor. I currently work as a researcher for her [⚠️ now past-tense — see above]. We have worked together since January 2021. Our main work has included an ICML workshop paper and arXiv preprint under review at Physical Review Research. arxiv.org/abs/2512.09152 · https://openreview.net/forum?id=vxn5QGPFyi#all
+
+**Reference 2 — David Schwab** (davidjschwab@gmail.com)
+- *Background:* Associate Professor, Biology & Physics, CUNY Graduate Center. https://scholar.google.com/citations?user=UreckXYAAAAJ&hl=en · Member of technical staff at DatologyAI
+- *Relationship:* One of my main collaborators; we worked on the above papers (arXiv preprint + ICML workshop). Worked together since late-2021.
+
+**Reference 3 — Vudtiwat Ngampruetikorn ("Wave")** (wave.ngamp@gmail.com)
+- *Background:* Senior Lecturer (Assistant Professor), School of Physics, University of Sydney. https://wavengampruetikorn.github.io/ · scholar.google.com/citations?user=cREUeIYAAAAJ&hl=en
+- *Relationship:* Another main collaborator; worked on the above papers. Started when he was a postdoc for David Schwab. David and Stephanie gave higher-level feedback; Wave helped on finer details of simulations, coding, math, etc.
