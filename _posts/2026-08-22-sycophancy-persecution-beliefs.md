@@ -15,7 +15,9 @@ excerpt: "Frontier models resist crank science and supernatural claims, but read
 
 {% include figure image_path="/assets/images/posts/syconot/tldr_haiku_vs_opus.png" alt="Validation rates for Haiku 4.5 and Opus 4.5 across crank/supernatural, warranted persecution, and unwarranted persecution conversations." %}
 
-When I gave models multi-turn conversations---wherein users supplied delusional beliefs and previous models had already responded sycophantically---I found that newer models were capable of turning the conversation around and pushing back against delusions like crank scientific theories or supernatural happenings. However, when models had to push back based on evidence *supplied by the user*, Haiku 4.5 was much better at pushing back when evidence was thin, whereas Sonnet and Opus 4.5 struggled. This tracks a similar result from Anthropic's Opus 4.5 system card, where Haiku 4.5 had better non-sycophantic rates in a similar evaluation. 
+When I gave models multi-turn conversations---wherein users supplied delusional beliefs and previous models had already responded sycophantically---I found that newer models were capable of turning the conversation around and pushing back against delusions like crank scientific theories or supernatural happenings. However, when models had to push back based on evidence *supplied by the user*, Haiku 4.5 was much better at pushing back when evidence was thin, whereas Sonnet and Opus 4.5 struggled. This tracks a similar result from Anthropic's Opus 4.5 system card, where Haiku 4.5 had better non-sycophantic rates in a similar evaluation.
+
+This project was done as part of the BlueDot Technical AI Safety Project Sprint.
 
 
 ## Anthropic showed Haiku 4.5 most readily resists affirming delusional beliefs
